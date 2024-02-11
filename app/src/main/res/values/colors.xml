@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="tramsparent">#00000000</color>
+    <color name="moradoOscuro">#7e2199</color>
+    <color name="moradoNormal">#A52199</color>
+    <color name="azulCianOscuro">#0d3d86</color>
+    <color name="blancoHueso">#fafafa</color>
+
 </resources>
