@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "es.resisg.prometeoapp3"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "es.resisg.prometeoapp3"

@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp2.conexion;
+package es.resisg.prometeoapp3.conexion;
 
 import android.os.AsyncTask;
 
@@ -15,44 +15,42 @@ import java.net.URL;
 
 public class Conectar extends AsyncTask<String,String,String> {
 
-
     @Override
     protected String doInBackground(String... strings) {
 
+        //se recogen las variables pasadas como argumentos
         String URL = strings[0];
         String usuario= strings[1];
         String contrasena=strings[2];
 
 
-        HttpURLConnection httpURLConnection=null;
-        URL url =null;
         try {
-            url = new URL(URL);
-            httpURLConnection  =(HttpURLConnection) url.openConnection();
+            //Se instancia la URL y se crea la conexion HttpURELConecciton por el metodo POST
+            URL url = new URL(URL);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
 
             // Agregue los parámetros necesarios a la solicitud
-            String urlParameters = "usuario="+usuario+"&contrasena="+contrasena;
+            String parametrosURL = "usuario="+usuario+"&contrasena="+contrasena;
             httpURLConnection.setDoOutput(true);
             OutputStream os = httpURLConnection.getOutputStream();
-            os.write(urlParameters.getBytes());
+            os.write(parametrosURL.getBytes());
             os.flush();
             os.close();
 
-
-            httpURLConnection.connect();
-            int codigo = httpURLConnection.getResponseCode();
-            if(codigo == HttpURLConnection.HTTP_OK){
-                InputStream in = new BufferedInputStream(httpURLConnection.getInputStream());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-                String lineas="";
-                StringBuffer buffer = new StringBuffer();
-                while ((lineas=reader.readLine()) != null){
-                    buffer.append(lineas);
-                }
-                return buffer.toString();
+            // Obtener la respuesta del servidor
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            String inputLine;
+            StringBuffer respuesta = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                respuesta.append(inputLine);
             }
+            in.close();
+
+            //Devolverla respuesta
+            return respuesta.toString();
+
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

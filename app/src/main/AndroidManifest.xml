@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--Permisos de conexion por internet-->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--se añade android:usesCleartextTraffic="true" para que la aplicacion puede hacer una conexion http
+     , por defecto este restrigida-->
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
