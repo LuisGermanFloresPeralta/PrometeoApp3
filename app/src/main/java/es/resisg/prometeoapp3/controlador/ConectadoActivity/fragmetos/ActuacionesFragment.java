@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp3.controlador.ActivityConectado.fragmetos;
+package es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos;
 
 import android.os.Bundle;
 
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 
 import es.resisg.prometeoapp3.R;
 
-public class NotasFragment extends Fragment {
-    public NotasFragment() {
+public class ActuacionesFragment extends Fragment {
+    public ActuacionesFragment() {
         // Required empty public constructor
     }
     @Override
@@ -22,6 +22,6 @@ public class NotasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notas, container, false);
+        return inflater.inflate(R.layout.fragment_actuaciones_particulares, container, false);
     }
 }

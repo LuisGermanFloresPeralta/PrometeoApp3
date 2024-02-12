@@ -11,7 +11,7 @@ import android.widget.Toast;
 import java.util.concurrent.ExecutionException;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.controlador.ActivityConectado.ConectadoActivity;
+import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
 import es.resisg.prometeoapp3.modelo.conexion.Conectar;
 
 public class MainActivity extends AppCompatActivity {

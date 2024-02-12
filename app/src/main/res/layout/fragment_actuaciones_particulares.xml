@@ -4,4 +4,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E30E0E"
-    tools:context=".controlador.ActivityConectado.fragmetos.ActuacionesParticularesFragment" />
+    tools:context=".controlador.ConectadoActivity.fragmetos.ActuacionesFragment" />

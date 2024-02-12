@@ -1,7 +1,0 @@
-<resources>
-    <string name="mainImageView_Description">Logo de la aplicacion</string>
-    <string name="mainTxtViewTitulo_String">Entrar a IES LAS SALINAS</string>
-    <string name="mainEdtUsuario_String">Usuario</string>
-    <string name="mainEdtContrasena_String">Contraseña</string>
-    <string name="mainBtnAcceder_String">Acceder</string>
-</resources>

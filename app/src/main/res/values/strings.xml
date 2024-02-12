@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">PrometeoApp3</string>
+
+    <!--string_activity_main_strings-->
+    <string name="mainImageView_Description">Logo de la aplicacion</string>
+    <string name="mainTxtViewTitulo_String">Entrar a IES LAS SALINAS</string>
+    <string name="mainEdtUsuario_String">Usuario</string>
+    <string name="mainEdtContrasena_String">Contraseña</string>
+    <string name="mainBtnAcceder_String">Acceder</string>
+
+    <!--string_configuracion_botton_navigation-->
+    <string name="itemActuacionesBottonNavigation_String">Actuaciones</string>
+    <string name="itemNotasBottonNavigation_String">Notas</string>
+    <string name="itemFaltasBottonNavigation_String">Faltas</string>
+
 </resources>

@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp3.controlador.ActivityConectado;
+package es.resisg.prometeoapp3.controlador.ConectadoActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,9 +9,9 @@ import android.os.Bundle;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.databinding.ActivityConectadoBinding;
-import es.resisg.prometeoapp3.controlador.ActivityConectado.fragmetos.ActuacionesParticularesFragment;
-import es.resisg.prometeoapp3.controlador.ActivityConectado.fragmetos.FaltasFragment;
-import es.resisg.prometeoapp3.controlador.ActivityConectado.fragmetos.NotasFragment;
+import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.ActuacionesFragment;
+import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.FaltasFragment;
+import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.NotasFragment;
 
 public class ConectadoActivity extends AppCompatActivity {
 
@@ -22,14 +22,14 @@ public class ConectadoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         //primero cargamos el primer fragmento por defecto
-        loadFragment(new ActuacionesParticularesFragment());
+        loadFragment(new ActuacionesFragment());
 
         //agregamos un selectedListener al BottonNavigation
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 
             int itemId = item.getItemId();
             if(itemId== R.id.itemActuacionesBottonNavigation){
-                loadFragment(new ActuacionesParticularesFragment());
+                loadFragment(new ActuacionesFragment());
                 return true;
             }else if(itemId==R.id.itemNotasBottonNavigation){
                 loadFragment(new NotasFragment());
