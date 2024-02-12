@@ -1,7 +1,8 @@
-package es.resisg.prometeoapp3;
+package es.resisg.prometeoapp3.controlador.MainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,7 +10,9 @@ import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
-import es.resisg.prometeoapp3.conexion.Conectar;
+import es.resisg.prometeoapp3.R;
+import es.resisg.prometeoapp3.controlador.ActivityConectado.ConectadoActivity;
+import es.resisg.prometeoapp3.modelo.conexion.Conectar;
 
 public class MainActivity extends AppCompatActivity {
     //Atributos
@@ -37,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
             //Llamos a la conexion que nos devuelve la respuesta del servidor(nombre del usuario) en String y lo mostramos en un Toast
             String respuesta = new Conectar().execute(validaUsuarioURL,usuario,contrasena).get();
             Toast.makeText(this, respuesta, Toast.LENGTH_SHORT).show();
+
+            //iniciamos el siguiente activity 'ActivityConectado'
+            Intent i = new Intent(this, ConectadoActivity.class);
+            startActivity(i);
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {

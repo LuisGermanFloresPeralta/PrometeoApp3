@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemActuacionesBottonNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_actuaciones_particulares"
+        android:title="@string/itemActuacionesBottonNavigation_String" />
+    <item
+        android:id="@+id/itemNotasBottonNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_notas"
+        android:title="@string/itemNotasBottonNavigation_String" />
+    <item
+        android:id="@+id/itemFaltasBottonNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_faltas"
+        android:title="@string/itemFaltasBottonNavigation_String" />
+</menu>

@@ -25,6 +25,13 @@ android {
             )
         }
     }
+    //-----------------------------------------------------------------------------------
+    //habilitamos viewBinding para simplificar la interaccion con las vistas en el código.
+    buildFeatures{
+        viewBinding=true
+    }
+    //-----------------------------------------------------------------------------------
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8

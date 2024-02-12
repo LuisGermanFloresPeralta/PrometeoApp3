@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp3.conexion;
+package es.resisg.prometeoapp3.modelo.conexion;
 
 import android.os.AsyncTask;
 
