@@ -35,14 +35,20 @@ public class ActuacionesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflar el layout de este fragment
         View view =inflater.inflate(R.layout.fragment_actuaciones_particulares, container, false);
-        // llamamos a conexion.tareas.conseguirActuacionesParticulares pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        actuacionParticularArrayList = new datos("http://www.ieslassalinas.org/APP/appActuaciones2.php","1244884","1244884").conseugirActuaciones();
-        //relacionamos el Recycler view con la parte gráfica de la aplicacion
-        recyclerViewActuacionesParticulares = view.findViewById(R.id.recyclerViewActuacionesParticulares);
-        actuacionesAdapter = new actuacionesAdapter(actuacionParticularArrayList);
-        recyclerViewActuacionesParticulares.setAdapter(actuacionesAdapter);
-        recyclerViewActuacionesParticulares.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        //Recuperamos el usuario y contraseña pasado por bundle desde ConectadoActivity2
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String usuario = bundle.getString("usuario");
+            String contrasena = bundle.getString("contrasena");
+            // llamamos a conexion.tareas.conseguirActuacionesParticulares pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
+            actuacionParticularArrayList = new datos("http://www.ieslassalinas.org/APP/appActuaciones2.php", usuario, contrasena).conseugirActuaciones();
+            //relacionamos el Recycler view con la parte gráfica de la aplicacion
+            recyclerViewActuacionesParticulares = view.findViewById(R.id.recyclerViewActuacionesParticulares);
+            actuacionesAdapter = new actuacionesAdapter(actuacionParticularArrayList);
+            recyclerViewActuacionesParticulares.setAdapter(actuacionesAdapter);
+            recyclerViewActuacionesParticulares.setLayoutManager(new LinearLayoutManager(getActivity()));
+        }
         return  view;
     }
 }

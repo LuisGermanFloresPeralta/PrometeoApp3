@@ -37,18 +37,40 @@ public class MainActivity extends AppCompatActivity {
 
 
         try {
-            //Llamos a la conexion que nos devuelve la respuesta del servidor(nombre del usuario) en String y lo mostramos en un Toast
             String respuesta = new Conectar().execute(validaUsuarioURL,usuario,contrasena).get();
-            Toast.makeText(this, respuesta, Toast.LENGTH_SHORT).show();
-
-            //iniciamos el siguiente activity 'ActivityConectado'
-            Intent i = new Intent(this, ConectadoActivity.class);
-            startActivity(i);
+            if (esVacio(usuario,contrasena)){
+                Toast.makeText(this, "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
+            }else if(noExisteUsuario(respuesta)){
+                Toast.makeText(this,"Usuario no registrado, hable con secretaria",Toast.LENGTH_SHORT).show();
+            }else{
+                //añadimos el nombre,usuario,contrasena al siguiente activity
+                Toast.makeText(this,"¡Bienvenido/a! "+respuesta,Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this, ConectadoActivity.class);
+                i.putExtra("nombre",respuesta);
+                i.putExtra("usuario",edtUsuario.getText().toString());
+                i.putExtra("contrasena",edtContrasena.getText().toString());
+                startActivity(i);
+            }
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
+    }
+    //Se comprueba si estaVacio los campos usuario y contrasena
+    public boolean esVacio(String usuario, String contrasena){
+        if (usuario.isEmpty() || contrasena.isEmpty()){
+            return  true;
+        }else {
+            return false;
+        }
+    }
+    //comprueba si el usuario no existe en el servidor
+    public boolean noExisteUsuario(String respuetaServer){
+        if(respuetaServer.equals("\uFEFF\uFEFF\uFEFF0")) {
+            return true;
+        }
+        return false;
     }
 }
