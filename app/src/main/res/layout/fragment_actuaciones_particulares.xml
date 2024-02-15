@@ -3,5 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E30E0E"
-    tools:context=".controlador.ConectadoActivity.fragmetos.ActuacionesFragment" />
+    tools:context=".controlador.ConectadoActivity.fragmetos.ActuacionesFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewActuacionesParticulares"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

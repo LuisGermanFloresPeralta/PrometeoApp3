@@ -23,6 +23,10 @@ public class datos{
         this.contrasena = contrasena;
     }
 
+    public datos() {
+
+    }
+
     public ArrayList<ActuacionParticular> conseugirActuaciones () {
 
         ArrayList<ActuacionParticular> actuaciones;
