@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controlador.MainActivity.MainActivity">
+    tools:context=".controlador.MainActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -58,7 +58,7 @@
                 android:background="@drawable/border_radius"
                 android:ems="10"
                 android:hint="@string/mainEdtContrasena_String"
-                android:inputType="text"
+                android:inputType="text|textPassword"
                 android:paddingStart="15dp"
                 android:textColorHint="#757575"
                 tools:ignore="RtlSymmetry" />

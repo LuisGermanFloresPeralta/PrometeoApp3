@@ -12,14 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
+import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface;
 import es.resisg.prometeoapp3.modelo.ActuacionParticular;
 
 public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.actuacionesViewHodler> {
     //atributos
+    private final actuacionesInterface actuacionesInterface;
     private ArrayList<ActuacionParticular> actuacionParticularArrayList;
 
     //Constructor
-    public actuacionesAdapter(ArrayList<ActuacionParticular> actuacionParticularArrayList) {
+    public actuacionesAdapter(es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface actuacionesInterface, ArrayList<ActuacionParticular> actuacionParticularArrayList) {
+        this.actuacionesInterface = actuacionesInterface;
         this.actuacionParticularArrayList = actuacionParticularArrayList;
     }
 
@@ -28,7 +31,7 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
     //aqui es donde se infla el layout con los items
     public actuacionesAdapter.actuacionesViewHodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.actuacion_item_layout,parent,false);
-        return new actuacionesAdapter.actuacionesViewHodler(view);
+        return new actuacionesAdapter.actuacionesViewHodler(view,actuacionesInterface);
     }
 
     @Override
@@ -51,12 +54,24 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
     //como si fuera en un OnCreate de un MainActivity
     public static class actuacionesViewHodler extends RecyclerView.ViewHolder{
         TextView textView1,textView2,textView3,textView4;
-        public actuacionesViewHodler(@NonNull View itemView) {
+        public actuacionesViewHodler(@NonNull View itemView, actuacionesInterface actuacionesInterface) {
             super(itemView);
             textView1=itemView.findViewById(R.id.txtViewNombreProfesorItem);
             textView2=itemView.findViewById(R.id.txtViewOtrasInformacionesItem);
             textView3=itemView.findViewById(R.id.txtViewFechaHoraItem);
             textView4=itemView.findViewById(R.id.txtViewComentarioItem);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(actuacionesInterface != null){
+                        int pos = getAdapterPosition();
+                        if(pos!= RecyclerView.NO_POSITION){
+                            actuacionesInterface.OnItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
     }
 }

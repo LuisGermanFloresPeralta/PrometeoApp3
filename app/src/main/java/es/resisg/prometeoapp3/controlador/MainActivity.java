@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp3.controlador.MainActivity;
+package es.resisg.prometeoapp3.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
 
