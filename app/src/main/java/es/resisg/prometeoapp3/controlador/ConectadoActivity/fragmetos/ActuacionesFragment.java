@@ -1,6 +1,7 @@
 package es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,14 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewAdapters.actuacionesAdapter;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface;
-import es.resisg.prometeoapp3.controlador.DetallesActuacionesActivity;
+import es.resisg.prometeoapp3.controlador.DetallesItemActuacionesActivity;
 import es.resisg.prometeoapp3.modelo.ActuacionParticular;
 import es.resisg.prometeoapp3.modelo.conexion.datos;
 
@@ -62,9 +62,9 @@ public class ActuacionesFragment extends Fragment implements actuacionesInterfac
 
     @Override
     public void OnItemClick(int posicion) {
-        Intent i = new Intent(getActivity(), DetallesActuacionesActivity.class);
+        Intent i = new Intent(getActivity(), DetallesItemActuacionesActivity.class);
         i.putExtra("Nombre_profesor",actuacionParticularArrayList.get(posicion).getNombre_profesor());
-        i.putExtra("Fecha",actuacionParticularArrayList.get(posicion).getFecha());
+        i.putExtra("Fecha",new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss").format(actuacionParticularArrayList.get(posicion).getFecha()));
         i.putExtra("Tipo_actuacion",actuacionParticularArrayList.get(posicion).getTipo_actuacion());
         i.putExtra("Comentario",actuacionParticularArrayList.get(posicion).getComentario());
         startActivity(i);

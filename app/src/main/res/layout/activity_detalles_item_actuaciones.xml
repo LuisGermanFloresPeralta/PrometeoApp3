@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blancoHueso"
+    android:clipToPadding="false"
+    tools:context=".controlador.DetallesItemActuacionesActivity">
+
+    <Button
+        android:id="@+id/btnVolverDetallesItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/transparente"
+        android:onClick="volverAtras"
+        app:icon="@drawable/ic_volver"
+        app:iconGravity="textStart"
+        app:iconSize="28dp"
+        app:iconTint="@color/moradoOscuro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVolverDetallesItem">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blancoHueso"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtViewTipoActuacionDetallesItem"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_horizontal"
+                android:text="@string/txtViewTipoActuacionDetallesItem_string"
+                android:textColor="@color/moradoNormal"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="56dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start|right|end"
+                    android:orientation="vertical"
+                    android:paddingStart="20dp">
+
+                    <TextView
+                        android:id="@+id/txtViewLogoInicialDetallesItem"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/fondo_circular"
+                        android:gravity="center"
+                        android:text="@string/txtViewLogoInicialDetallesItem_string"
+                        android:textAllCaps="true"
+                        android:textColor="@color/blancoHueso"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtViewNombreProfesorDetallesItem"
+                    android:layout_width="192dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="4dp"
+                    android:text="@string/txtViewNombreProfesorDetallesItem_string"
+                    android:textColor="@color/azulCianOscuro"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/txtViewFechaDetallesItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:paddingRight="20dp"
+                    android:text="@string/txtViewFechaDetallesItem_string"
+                    android:textColor="@color/azulCianOscuro"
+                    android:textSize="15sp"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtViewDetallesItem1"
+                android:layout_width="wrap_content"
+                android:layout_height="46dp"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/txtViewDetallesItem1_string"
+                android:textColor="@color/azulCianOscuro"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="TextSizeCheck" />
+
+            <TextView
+                android:id="@+id/txtViewComentarioDetallesItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/fondo_texto"
+                android:elevation="4dp"
+                android:paddingLeft="18dp"
+                android:paddingTop="5dp"
+                android:paddingRight="18dp"
+                android:text="@string/txtViewComentarioDetallesItem_string"
+                tools:ignore="VisualLintLongText" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
