@@ -44,7 +44,7 @@
         uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.</string>
 
     <!--string_activity_detalles_item_actuaciones-->
-<string name="txtViewTipoActuacionDetallesItem_string">Parte Disciplinario</string>
+    <string name="txtViewTipoActuacionDetallesItem_string">Parte Disciplinario</string>
     <string name="txtViewLogoInicialDetallesItem_string">A</string>
     <string name="txtViewNombreProfesorDetallesItem_string">Ángela Reina</string>
     <string name="txtViewFechaDetallesItem_string">01/02/2026</string>
@@ -74,7 +74,6 @@
         probar el diseño visual antes de insertar el texto final. Aunque no posee actualmente fuentes para justificar sus hipótesis, el
         profesor de filología clásica Richard McClintock asegura que su uso se remonta a los impresores de comienzos del siglo XVI. Su
         uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.</string>
-
 
 
 </resources>

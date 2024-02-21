@@ -37,6 +37,7 @@ public class DetallesItemActuacionesActivity extends AppCompatActivity {
     }
     //metado para boton back
     public void volverAtras(View view) {
+        finish();
         onBackPressed();
     }
 

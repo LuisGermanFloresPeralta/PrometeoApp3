@@ -13,10 +13,13 @@ import java.util.concurrent.ExecutionException;
 import es.resisg.prometeoapp3.modelo.ActuacionParticular;
 
 public class datos{
+
+    //atrtibutos
     String url;
     String usuario;
     String contrasena;
 
+    //construtores
     public datos(String url, String usuario, String contrasena) {
         this.url = url;
         this.usuario = usuario;
@@ -27,6 +30,7 @@ public class datos{
 
     }
 
+    //metodos
     public ArrayList<ActuacionParticular> conseugirActuaciones () {
 
         ArrayList<ActuacionParticular> actuaciones;
@@ -59,5 +63,19 @@ public class datos{
         }
         //finalmente devolvemos el arrayList actuaciones
         return actuaciones;
+    }
+
+    public String nombreUsuario(){
+
+        String respuesta;
+        try {
+            respuesta = new Conectar().execute(url,usuario,contrasena).get();
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        return respuesta;
     }
 }

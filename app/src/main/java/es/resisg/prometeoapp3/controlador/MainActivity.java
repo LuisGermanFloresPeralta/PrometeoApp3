@@ -3,6 +3,7 @@ package es.resisg.prometeoapp3.controlador;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,64 +14,78 @@ import java.util.concurrent.ExecutionException;
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
 import es.resisg.prometeoapp3.modelo.conexion.Conectar;
+import es.resisg.prometeoapp3.modelo.conexion.datos;
 
 public class MainActivity extends AppCompatActivity {
     //Atributos
     EditText edtUsuario,edtContrasena;
-    final String validaUsuarioURL= "http://www.ieslassalinas.org/APP/appValidaUsuario.php";
+    public static SharedPreferences sharedPreferencesSesionActual;
+    SharedPreferences sharedPreferencesSesiones;
+    public static final String SHARED_PREF_NAME="shpSesion";
+    public static final String KEY_USUARIO="shpUsuario";
+    public static final String KEY_CONTRASENA="shpContrasena";
+    public static final String KEY_NOMBRE="shpNombre";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        init();
+        validarSesion();
+
+
+    }
+    public void init(){
+        //inicializamos el SharedPreferences
+        sharedPreferencesSesionActual = getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
         //relacionar atributos con la parte gráfica
         edtUsuario =(EditText) findViewById(R.id.edtUsuario_main_layout);
         edtContrasena =(EditText) findViewById(R.id.edtContrasena_main_layout);
-
     }
 
     //metodo de acceso
     public void Aceder(View view){
-        //tomamos el texto de los TextViews presentes en la parte gráfica.
         String usuario = edtUsuario.getText().toString();
         String contrasena = edtContrasena.getText().toString();
-
-
-        try {
-            String respuesta = new Conectar().execute(validaUsuarioURL,usuario,contrasena).get();
-            if (esVacio(usuario,contrasena)){
-                Toast.makeText(this, "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
-            }else if(noExisteUsuario(respuesta)){
-                Toast.makeText(this,"Usuario no registrado, hable con secretaria",Toast.LENGTH_SHORT).show();
-            }else{
-                //añadimos el nombre,usuario,contrasena al siguiente activity
-                Toast.makeText(this,"¡Bienvenido/a! "+respuesta,Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(MainActivity.this, ConectadoActivity.class);
-                i.putExtra("nombre",respuesta);
-                i.putExtra("usuario",edtUsuario.getText().toString());
-                i.putExtra("contrasena",edtContrasena.getText().toString());
-                startActivity(i);
-            }
-        } catch (ExecutionException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-    //Se comprueba si estaVacio los campos usuario y contrasena
-    public boolean esVacio(String usuario, String contrasena){
-        if (usuario.isEmpty() || contrasena.isEmpty()){
-            return  true;
+        String respuesta="";
+        if(usuario.isEmpty()&&contrasena.isEmpty()){
+            Toast.makeText(this, "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }else if (usuario.isEmpty()){
+            Toast.makeText(this, "El campo usuario esta vacío", Toast.LENGTH_SHORT).show();
+        } else if (contrasena.isEmpty()) {
+            Toast.makeText(this, "El campo contraseña esta vacío", Toast.LENGTH_SHORT).show();
         }else {
-            return false;
+            respuesta=new datos("http://www.ieslassalinas.org/APP/appValidaUsuario.php",usuario,contrasena).nombreUsuario();
+            if(respuesta.equals("\uFEFF\uFEFF\uFEFF0")){
+                Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
+            }else {
+                //guardamos los datos de usario y contraseña en el sharedPreferences
+                iniciarSesion(usuario,contrasena,respuesta);
+                //Iniciamos el ActivityConectado
+                irActivityConectado();
+            }
+        }
+
+
+
+    }
+    public void validarSesion(){
+        if(sharedPreferencesSesionActual.getString(KEY_USUARIO,"")!=""&&sharedPreferencesSesionActual.getString(KEY_CONTRASENA,"")!=""){
+            irActivityConectado();
         }
     }
-    //comprueba si el usuario no existe en el servidor
-    public boolean noExisteUsuario(String respuetaServer){
-        if(respuetaServer.equals("\uFEFF\uFEFF\uFEFF0")) {
-            return true;
-        }
-        return false;
+
+    public void iniciarSesion(String usuario,String contrasena,String nombre){
+        SharedPreferences.Editor editor = sharedPreferencesSesionActual.edit();
+        editor.putString(KEY_USUARIO,usuario);
+        editor.putString(KEY_CONTRASENA,contrasena);
+        editor.putString(KEY_NOMBRE,nombre);
+        editor.commit();
+    }
+
+    public void irActivityConectado(){
+        Intent i = new Intent(MainActivity.this, ConectadoActivity.class);
+        finish();
+        startActivity(i);
     }
 }
