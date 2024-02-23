@@ -75,5 +75,8 @@
         profesor de filología clásica Richard McClintock asegura que su uso se remonta a los impresores de comienzos del siglo XVI. Su
         uso en algunos editores de texto muy conocidos en la actualidad ha dado al texto lorem ipsum nueva popularidad.</string>
 
+    <!--string_configuracion_popup_menu-->
+    <string name="itemEditarCuentaPopupMenu_string">Editar</string>
+    <string name="itemElminarCuentaPopupMenu_string">Eliminar</string>
 
 </resources>

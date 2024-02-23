@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp3.modelo.conexion;
+package es.resisg.prometeoapp3.modelo.conexionHTTP;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
-import es.resisg.prometeoapp3.modelo.ActuacionParticular;
+import es.resisg.prometeoapp3.clases.ActuacionParticular;
 
-public class datos{
+public class peticiones {
 
     //atrtibutos
     String url;
@@ -20,13 +20,13 @@ public class datos{
     String contrasena;
 
     //construtores
-    public datos(String url, String usuario, String contrasena) {
+    public peticiones(String url, String usuario, String contrasena) {
         this.url = url;
         this.usuario = usuario;
         this.contrasena = contrasena;
     }
 
-    public datos() {
+    public peticiones() {
 
     }
 
@@ -38,7 +38,7 @@ public class datos{
             //instancio arrayList a devolver
             actuaciones = new ArrayList<>();
             //hacemos la conexion http y lo almacenamos en String respuesta
-            String respuesta = new Conectar().execute(url, usuario, contrasena).get();
+            String respuesta = new conexionHTTP().execute(url, usuario, contrasena).get();
             //lo convertimos a JSONArray
             JSONArray jsonArray = new JSONArray(respuesta);
             //Conseguimos cada elemento de jsonArray con JSONObject obtenemos cada atributo y rellenamos el ArrayList actuaciones
@@ -65,11 +65,11 @@ public class datos{
         return actuaciones;
     }
 
-    public String nombreUsuario(){
+    public String conseguirNombreUsuario(){
 
         String respuesta;
         try {
-            respuesta = new Conectar().execute(url,usuario,contrasena).get();
+            respuesta = new conexionHTTP().execute(url,usuario,contrasena).get();
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {

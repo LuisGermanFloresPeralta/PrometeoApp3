@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemEditarCuentaPopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/itemEditarCuentaPopupMenu_string" />
+    <item
+        android:id="@+id/itemElminarCuentaPopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/itemElminarCuentaPopupMenu_string" />
+</menu>

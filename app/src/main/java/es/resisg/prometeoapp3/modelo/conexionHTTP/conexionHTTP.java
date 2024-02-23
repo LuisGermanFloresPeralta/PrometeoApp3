@@ -1,11 +1,9 @@
-package es.resisg.prometeoapp3.modelo.conexion;
+package es.resisg.prometeoapp3.modelo.conexionHTTP;
 
 import android.os.AsyncTask;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -13,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class Conectar extends AsyncTask<String,String,String> {
+public class conexionHTTP extends AsyncTask<String,String,String> {
 
     @Override
     protected String doInBackground(String... strings) {

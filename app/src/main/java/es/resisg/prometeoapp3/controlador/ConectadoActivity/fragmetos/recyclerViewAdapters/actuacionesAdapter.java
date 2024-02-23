@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface;
-import es.resisg.prometeoapp3.modelo.ActuacionParticular;
+import es.resisg.prometeoapp3.clases.ActuacionParticular;
 
 public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.actuacionesViewHodler> {
     //atributos

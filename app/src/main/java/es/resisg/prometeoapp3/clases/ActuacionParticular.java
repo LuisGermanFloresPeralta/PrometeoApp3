@@ -1,10 +1,6 @@
-package es.resisg.prometeoapp3.modelo;
+package es.resisg.prometeoapp3.clases;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-
-import es.resisg.prometeoapp3.modelo.conexion.Conectar;
 
 public class ActuacionParticular {
     //attributes
