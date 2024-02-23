@@ -39,7 +39,7 @@ public class GestionSesion {
     public void iniciarSesion(String usuario, String contrasena, String nombre) {
         editor.putString(KEY_USUARIO, usuario);
         editor.putString(KEY_CONTRASENA, contrasena);
-        editor.putString(KEY_NOMBRE, nombre);
+        editor.putString(KEY_NOMBRE, nombre.replaceAll("[^a-zA-Z]", ""));
         editor.apply();
     }
 

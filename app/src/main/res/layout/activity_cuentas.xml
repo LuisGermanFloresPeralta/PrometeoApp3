@@ -6,22 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".controlador.CuentasActivity.CuentasActivity">
 
-    <Button
-        android:id="@+id/btnVolverActivityCuentas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="@color/transparente"
-        android:onClick="volverAtras"
-        app:icon="@drawable/ic_volver"
-        app:iconGravity="textStart"
-        app:iconSize="28dp"
-        app:iconTint="@color/moradoOscuro"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnVolverActivityCuentas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/transparente"
+                android:onClick="volverAtras"
+                app:icon="@drawable/ic_volver"
+                app:iconGravity="textStart"
+                app:iconSize="28dp"
+                app:iconTint="@color/moradoOscuro"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="Cuentas IES LAS SALINAS"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtViewLogoInicialCuentas"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/fondo_circular"
+            android:gravity="center"
+            android:text="@string/txtViewLogoInicialDetallesItem_string"
+            android:textAllCaps="true"
+            android:textColor="@color/blancoHueso"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtViewNombreSesion"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="LUIS GERMAN"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="410dp"
+            android:layout_height="56dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/moradoNormal"
+                android:text="Editar" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="127dp"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/moradoNormal"
+                android:onClick="CerrarSesion"
+                android:text="Cerrar sesion" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="30dp"
+            android:text="Usuarios:"
+            android:textSize="24sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvActivityCuentas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparente" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/imgbVolverActivityCuentas"
@@ -34,15 +120,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcvActivityCuentas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/transparente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnVolverActivityCuentas"
-        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
     private CuentasActivityAdapter cuentasActivityAdapter;
     private ArrayList<Cuenta> cuentaArrayList= new ArrayList<>();
     GestionSesion gestionSesion;
+    TextView txtViewNombreSesion,txtViewLogoInicialSesion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,12 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
     public void init(){
         //conseguir sesion
         gestionSesion = new GestionSesion(this);
+
+        //relacionamos las variables a la parte gráfica de la aplicacion
+        txtViewNombreSesion = (TextView) findViewById(R.id.txtViewNombreSesion);
+        txtViewLogoInicialSesion =(TextView)findViewById(R.id.txtViewLogoInicialCuentas);
+        txtViewNombreSesion.setText(gestionSesion.getNombre());
+        txtViewLogoInicialSesion.setText(obtenerInicial(gestionSesion.getNombre()));
 
         //conseguir ArrayList de cuentas
         cuentaArrayList = conseguirCuentas();
@@ -81,11 +89,24 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         cuentas.add(new Cuenta("1151863","1151863","Elias"));
         return cuentas;
     }
+    public String obtenerInicial(String nombre) {
+        String inicial= String.valueOf(nombre.charAt(0));
+        return inicial;
+    }
     public void volverAtras(View view) {
         irActivityConectado();
     }
+    public void CerrarSesion(View view){
+        gestionSesion.cerrarSesion();
+        irMainActivity();
+    }
     public void irActivityConectado(){
         Intent intent = new Intent(this, ConectadoActivity.class);
+        finish();
+        startActivity(intent);
+    }
+    public void irMainActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }

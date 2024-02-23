@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/ic_usuario"
+        android:background="@drawable/ic_usuario_morado"
         android:contentDescription="@string/mainImageView_Description"
         android:onClick="irACuentas"
         app:layout_constraintEnd_toEndOf="parent"
