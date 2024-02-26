@@ -106,7 +106,8 @@
             android:id="@+id/rcvActivityCuentas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparente" />
+            android:background="@color/transparente"
+            android:onClick="irEditarCrearCuenta" />
     </LinearLayout>
 
     <ImageButton
@@ -117,6 +118,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/ic_addusuario"
         android:contentDescription="@string/mainImageView_Description"
+        android:onClick="irCrearCuenta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

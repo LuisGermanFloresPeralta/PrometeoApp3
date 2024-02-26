@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
+import es.resisg.prometeoapp3.controlador.AnadirCuentaActivity;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
 import es.resisg.prometeoapp3.clases.Cuenta;
 import es.resisg.prometeoapp3.controlador.MainActivity;
@@ -70,7 +71,7 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.itemEditarCuentaPopupMenu){
-                    return true;
+                                        return true;
                 } else if (item.getItemId()==R.id.itemElminarCuentaPopupMenu) {
                     cuentaArrayList.remove(posicion);
                     cuentasActivityAdapter.notifyItemRemoved(posicion);
@@ -108,6 +109,10 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
     public void irMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         finish();
+        startActivity(intent);
+    }
+    public void irCrearCuenta(View v){
+        Intent intent = new Intent(this, AnadirCuentaActivity.class);
         startActivity(intent);
     }
 
