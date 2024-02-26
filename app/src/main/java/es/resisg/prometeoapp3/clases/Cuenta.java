@@ -15,7 +15,6 @@ public class Cuenta {
 
     //getters and setters
 
-
     public int getId() {
         return id;
     }

@@ -87,6 +87,21 @@ public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
         cursor.close();
         return cuentasList;
     }
+    public void editarCuenta(int id, String nuevoUsuario, String nuevaContrasena, String nuevoNombre) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
 
+        cv.put(COLUMN_USUARIO, nuevoUsuario);
+        cv.put(COLUMN_CONTRASENA, nuevaContrasena);
+        cv.put(COLUMN_NOMBRE, nuevoNombre);
+
+        int rowsAffected = db.update(TABLE_NAME, cv, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+
+        if (rowsAffected > 0) {
+            Toast.makeText(context, "Cuenta editada correctamente", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Error al editar la cuenta", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }

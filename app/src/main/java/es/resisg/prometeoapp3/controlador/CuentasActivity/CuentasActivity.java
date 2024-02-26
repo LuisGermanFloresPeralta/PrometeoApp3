@@ -17,6 +17,7 @@ import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.AnadirCuentaActivity;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
 import es.resisg.prometeoapp3.clases.Cuenta;
+import es.resisg.prometeoapp3.controlador.EditarCuentaActivity;
 import es.resisg.prometeoapp3.controlador.MainActivity;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
 import es.resisg.prometeoapp3.modelo.cuentasSQLite.cuentasSQLiteOpenHelper;
@@ -72,7 +73,8 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.itemEditarCuentaPopupMenu){
-                                        return true;
+                    irEditarCuenta(cuentaArrayList.get(posicion).getId());
+                    return true;
                 } else if (item.getItemId()==R.id.itemElminarCuentaPopupMenu) {
                     cuentaArrayList.remove(posicion);
                     cuentasActivityAdapter.notifyItemRemoved(posicion);
@@ -112,8 +114,15 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         finish();
         startActivity(intent);
     }
-    public void irCrearCuenta(View v){
+    public void irAnadirCuenta(View v){
         Intent intent = new Intent(this, AnadirCuentaActivity.class);
+        finish();
+        startActivity(intent);
+    }
+    public void irEditarCuenta(int id){
+        Intent intent = new Intent(this, EditarCuentaActivity.class);
+        intent.putExtra("id_Cuenta",id);
+        finish();
         startActivity(intent);
     }
 

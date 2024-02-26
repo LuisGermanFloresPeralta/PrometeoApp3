@@ -118,7 +118,7 @@
         android:layout_marginBottom="18dp"
         android:background="@drawable/ic_addusuario"
         android:contentDescription="@string/mainImageView_Description"
-        android:onClick="irCrearCuenta"
+        android:onClick="irAnadirCuenta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
