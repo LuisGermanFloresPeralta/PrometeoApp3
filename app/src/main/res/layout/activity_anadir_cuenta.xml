@@ -20,15 +20,6 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/edtNombreAnadirCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:text="Name" />
-
-            <EditText
                 android:id="@+id/edtUsuarioAnadirCuenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,10 +37,20 @@
                 android:minHeight="48dp"
                 android:text="Name" />
 
+            <EditText
+                android:id="@+id/edtNombreAnadirCuenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:text="Name" />
+
             <Button
                 android:id="@+id/btnAnadirAnadirCuenta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="Anadir"
                 android:text="Button" />
         </LinearLayout>
 

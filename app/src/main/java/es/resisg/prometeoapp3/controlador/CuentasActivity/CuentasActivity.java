@@ -19,6 +19,7 @@ import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
 import es.resisg.prometeoapp3.clases.Cuenta;
 import es.resisg.prometeoapp3.controlador.MainActivity;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
+import es.resisg.prometeoapp3.modelo.cuentasSQLite.cuentasSQLiteOpenHelper;
 
 public class CuentasActivity extends AppCompatActivity implements cuentasInterface {
 
@@ -82,12 +83,12 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
             }
         });
         popupMenu.show();
-
     }
     public ArrayList<Cuenta> conseguirCuentas(){
-        ArrayList<Cuenta> cuentas = new ArrayList<>();
-        cuentas.add(new Cuenta("1244884","1244884","Luis German"));
-        cuentas.add(new Cuenta("1151863","1151863","Elias"));
+        ArrayList<Cuenta> cuentas = new cuentasSQLiteOpenHelper(CuentasActivity.this).obtenerTodasLasCuentas();
+
+        cuentas.add(new Cuenta(25,"1244884","1244884","Luis German"));
+        cuentas.add(new Cuenta(26,"1151863","1151863","Elias"));
         return cuentas;
     }
     public String obtenerInicial(String nombre) {

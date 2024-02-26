@@ -2,16 +2,28 @@ package es.resisg.prometeoapp3.clases;
 
 public class Cuenta {
     //Atributos
+    int id;
     String usuario,contrasena,nombre;
 
     //constructor
-    public Cuenta(String usuario, String contrasena, String nombre) {
+    public Cuenta(int id, String usuario, String contrasena, String nombre) {
+        this.id = id;
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombre = nombre;
     }
 
     //getters and setters
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsuario() {
         return usuario;
     }
