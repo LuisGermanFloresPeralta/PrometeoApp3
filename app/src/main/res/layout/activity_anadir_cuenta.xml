@@ -6,9 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".controlador.AnadirCuentaActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="143dp"
+        android:layout_height="123dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/mainImageView_Description"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/prometeo_logo" />
+
     <androidx.cardview.widget.CardView
-        android:layout_width="338dp"
-        android:layout_height="313dp"
+        android:id="@+id/cardView"
+        android:layout_width="333dp"
+        android:layout_height="363dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,54 +31,89 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtViewTitulo_main_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="Añadir Cuenta IES Las Salians"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtUsuarioAnadirCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="271dp"
+                android:layout_height="59dp"
+                android:layout_marginBottom="6dp"
+                android:autoText="false"
+                android:autofillHints=""
+                android:background="@drawable/border_radius"
                 android:ems="10"
+                android:hint="@string/mainEdtUsuario_String"
                 android:inputType="text"
-                android:minHeight="48dp"
-                android:hint="usuario" />
+                android:paddingStart="15dp"
+                android:textAlignment="textStart"
+                android:textColorHint="#757575"
+                tools:ignore="Deprecated,RtlSymmetry" />
 
             <EditText
                 android:id="@+id/edtContrasenaAnadirCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="271dp"
+                android:layout_height="59dp"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:background="@drawable/border_radius"
                 android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:hint="contraseña" />
+                android:hint="@string/mainEdtContrasena_String"
+                android:inputType="text|textPassword"
+                android:paddingStart="15dp"
+                android:textColorHint="#757575"
+                tools:ignore="RtlSymmetry" />
 
             <EditText
                 android:id="@+id/edtNombreAnadirCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="271dp"
+                android:layout_height="59dp"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:background="@drawable/border_radius"
                 android:ems="10"
-                android:inputType="text"
-                android:minHeight="48dp"
-                android:hint="nombre" />
+                android:hint="Nombre"
+                android:inputType="text|textPassword"
+                android:paddingStart="15dp"
+                android:textColorHint="#757575"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button3"
-                    android:layout_width="127dp"
+                    android:layout_width="137dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/moradoNormal"
                     android:onClick="cancelarVolver"
-                    android:text="cancelar" />
+                    android:text="cancelar"
+                    app:cornerRadius="10dp" />
+
 
                 <Button
                     android:id="@+id/btnAnadirCuenta"
-                    android:layout_width="172dp"
+                    android:layout_width="137dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/moradoNormal"
                     android:onClick="Anadir"
-                    android:text="Añadir" />
+                    android:text="Añadir"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -75,10 +124,17 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/transparente"
         android:onClick="cancelarVolver"
-        android:text="volver"
+        app:icon="@drawable/ic_volver"
+        app:iconGravity="textStart"
+        app:iconSize="28dp"
+        app:iconTint="@color/moradoNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

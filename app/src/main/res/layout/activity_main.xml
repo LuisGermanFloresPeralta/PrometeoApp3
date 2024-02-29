@@ -68,7 +68,7 @@
                 android:layout_width="137dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/moradoOscuro"
+                android:backgroundTint="@color/moradoNormal"
                 android:onClick="Aceder"
                 android:text="@string/mainBtnAcceder_String"
                 app:cornerRadius="10dp" />

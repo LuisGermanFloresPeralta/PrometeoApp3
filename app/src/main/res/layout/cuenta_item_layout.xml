@@ -10,6 +10,8 @@
         android:layout_height="63dp"
         app:cardBackgroundColor="@color/moradoNormal"
         app:cardCornerRadius="30dp"
+        app:cardElevation="5dp"
+        app:cardMaxElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

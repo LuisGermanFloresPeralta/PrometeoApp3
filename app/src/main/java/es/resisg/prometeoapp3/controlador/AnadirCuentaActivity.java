@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.CuentasActivity.CuentasActivity;
+import es.resisg.prometeoapp3.modelo.conexionHTTP.peticiones;
 import es.resisg.prometeoapp3.modelo.cuentasSQLite.cuentasSQLiteOpenHelper;
 
 public class AnadirCuentaActivity extends AppCompatActivity {
@@ -25,15 +27,46 @@ public class AnadirCuentaActivity extends AppCompatActivity {
     }
 
     public void Anadir(View view){
-        int usuario = Integer.valueOf(edtUsuario.getText().toString().replaceAll("[^0-9]", ""));
+        String usuario = edtUsuario.getText().toString();
         String contrasena = edtContrasena.getText().toString().trim();
         String nombre = edtNombre.getText().toString().trim();
-        cuentasSQLiteOpenHelper myDB = new cuentasSQLiteOpenHelper(AnadirCuentaActivity.this);
-        myDB.anadirCuenta(usuario,contrasena,nombre);
+        if(validarUsuarioContrasenaNombre(usuario,contrasena,nombre)){
+            String respuesta =new peticiones("http://www.ieslassalinas.org/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario().replaceAll("[^a-zA-Z0-9áéíóúüÁÉÍÓÚÜ]", "");
+            if(respuesta.equals("0")){
+                Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
+            }else {
+            cuentasSQLiteOpenHelper myDB = new cuentasSQLiteOpenHelper(AnadirCuentaActivity.this);
+            myDB.anadirCuenta(Integer.valueOf(usuario.replaceAll("[^0-9]","")),contrasena,nombre);
+            cancelarVolver(view);
+            }
+        }
+
+
     }
     public void cancelarVolver(View view){
         Intent i = new Intent(this, CuentasActivity.class);
         finish();
         startActivity(i);
+    }
+    public boolean validarUsuarioContrasenaNombre(String usuario,String contrasena,String nombre){
+        if(usuario.isEmpty()&&contrasena.isEmpty()&&nombre.isEmpty()){
+            Toast.makeText(this, "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (usuario.isEmpty()){
+            Toast.makeText(this, "El campo usuario esta vacío", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if (contrasena.isEmpty()) {
+            Toast.makeText(this, "El campo contraseña esta vacío", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (nombre.isEmpty()) {
+            Toast.makeText(this, "El campo nombre esta vacío", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if(!(usuario.matches(".*\\d.*"))){
+            Toast.makeText(this, "El campo usuario debe contener números", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

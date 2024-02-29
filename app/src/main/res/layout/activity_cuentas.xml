@@ -33,7 +33,7 @@
                 app:icon="@drawable/ic_volver"
                 app:iconGravity="textStart"
                 app:iconSize="28dp"
-                app:iconTint="@color/moradoOscuro"
+                app:iconTint="@color/moradoNormal"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
@@ -43,7 +43,8 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
                 android:text="Cuentas IES LAS SALINAS"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -119,6 +120,7 @@
         android:layout_marginBottom="18dp"
         android:background="@drawable/ic_addusuario"
         android:contentDescription="@string/mainImageView_Description"
+        android:elevation="10dp"
         android:onClick="irAnadirCuenta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
