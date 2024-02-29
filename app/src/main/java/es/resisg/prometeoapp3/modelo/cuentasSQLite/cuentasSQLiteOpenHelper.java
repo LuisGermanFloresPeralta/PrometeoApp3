@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.clases.Cuenta;
+import es.resisg.prometeoapp3.controlador.MainActivity;
 
 public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
 
@@ -19,7 +20,6 @@ public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
     private  static final String DATABASE_NAME ="cuentas.db";
     private  static final int DATABASE_VERSION=1;
     private  static final String TABLE_NAME="mis_cuentas";
-    private  static final String COLUMN_ID="id";
     private  static final String COLUMN_USUARIO="usuario";
     private  static final String COLUMN_CONTRASENA="contrasena";
     private  static final String COLUMN_NOMBRE="nombre";
@@ -32,8 +32,7 @@ public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query ="CREATE TABLE  "+ TABLE_NAME +
-                " ( " + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                COLUMN_USUARIO + " TEXT, "+
+                " ( " + COLUMN_USUARIO + " INTEGER PRIMARY KEY , "+
                 COLUMN_CONTRASENA + " TEXT, " +
                 COLUMN_NOMBRE + " TEXT);";
         db.execSQL(query);
@@ -46,7 +45,7 @@ public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     //--------------------------------------------------------------------------
-    public void anadirCuenta(String usuario,String contrasena,String nombre){
+    public void anadirCuenta(int usuario,String contrasena,String nombre){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -69,17 +68,15 @@ public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                int idIndex = cursor.getColumnIndex(COLUMN_ID);
                 int usuarioIndex = cursor.getColumnIndex(COLUMN_USUARIO);
                 int contrasenaIndex = cursor.getColumnIndex(COLUMN_CONTRASENA);
                 int nombreIndex = cursor.getColumnIndex(COLUMN_NOMBRE);
 
-                int id = cursor.getInt(idIndex);
-                String usuario = cursor.getString(usuarioIndex);
+                int usuario = cursor.getInt(usuarioIndex);
                 String contrasena = cursor.getString(contrasenaIndex);
                 String nombre = cursor.getString(nombreIndex);
 
-                Cuenta cuenta = new Cuenta(id, usuario, contrasena, nombre);
+                Cuenta cuenta = new Cuenta(usuario, contrasena, nombre);
                 cuentasList.add(cuenta);
             } while (cursor.moveToNext());
         }
@@ -87,20 +84,30 @@ public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
         cursor.close();
         return cuentasList;
     }
-    public void editarCuenta(int id, String nuevoUsuario, String nuevaContrasena, String nuevoNombre) {
+    public void editarCuenta(int usuario ,String nuevaContrasena, String nuevoNombre) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_USUARIO, nuevoUsuario);
         cv.put(COLUMN_CONTRASENA, nuevaContrasena);
         cv.put(COLUMN_NOMBRE, nuevoNombre);
 
-        int rowsAffected = db.update(TABLE_NAME, cv, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        int rowsAffected = db.update(TABLE_NAME, cv, COLUMN_USUARIO + " = ?", new String[]{String.valueOf(usuario)});
 
         if (rowsAffected > 0) {
             Toast.makeText(context, "Cuenta editada correctamente", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "Error al editar la cuenta", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void borrarCuenta(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int rowsAffected = db.delete(TABLE_NAME, COLUMN_USUARIO + " = ?", new String[]{String.valueOf(id)});
+
+        if (rowsAffected > 0) {
+            Toast.makeText(context, "Cuenta eliminada correctamente", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Error al eliminar la cuenta", Toast.LENGTH_SHORT).show();
         }
     }
 

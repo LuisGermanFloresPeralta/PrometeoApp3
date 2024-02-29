@@ -47,7 +47,7 @@ public class ActuacionesFragment extends Fragment implements actuacionesInterfac
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirActuacionesParticulares pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        actuacionParticularArrayList = new peticiones("http://www.ieslassalinas.org/APP/appActuaciones2.php", gestionSesion.getUsuario(), gestionSesion.getContrasena()).conseugirActuaciones();
+        actuacionParticularArrayList = new peticiones("http://www.ieslassalinas.org/APP/appActuaciones2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseugirActuaciones();
 
         //relacionamos el Recycler view con la parte gráfica de la aplicacion
         recyclerViewActuacionesParticulares = view.findViewById(R.id.recyclerViewActuacionesParticulares);

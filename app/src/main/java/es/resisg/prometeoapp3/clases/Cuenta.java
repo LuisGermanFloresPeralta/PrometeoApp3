@@ -1,33 +1,24 @@
 package es.resisg.prometeoapp3.clases;
 
+import java.util.Objects;
+
 public class Cuenta {
     //Atributos
-    int id;
-    String usuario,contrasena,nombre;
-
+    int usuario;
+    String contrasena,nombre;
     //constructor
-    public Cuenta(int id, String usuario, String contrasena, String nombre) {
-        this.id = id;
+    public Cuenta(int usuario, String contrasena, String nombre) {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombre = nombre;
     }
 
     //getters and setters
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsuario() {
+    public int getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(int usuario) {
         this.usuario = usuario;
     }
 
@@ -45,5 +36,19 @@ public class Cuenta {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    //Equals and hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cuenta)) return false;
+        Cuenta cuenta = (Cuenta) o;
+        return getUsuario() == cuenta.getUsuario() && Objects.equals(getContrasena(), cuenta.getContrasena()) && Objects.equals(getNombre(), cuenta.getNombre());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsuario(), getContrasena(), getNombre());
     }
 }

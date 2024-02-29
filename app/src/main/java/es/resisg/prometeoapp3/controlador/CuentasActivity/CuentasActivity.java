@@ -12,6 +12,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.AnadirCuentaActivity;
@@ -45,10 +46,10 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         txtViewNombreSesion = (TextView) findViewById(R.id.txtViewNombreSesion);
         txtViewLogoInicialSesion =(TextView)findViewById(R.id.txtViewLogoInicialCuentas);
         txtViewNombreSesion.setText(gestionSesion.getNombre());
-        txtViewLogoInicialSesion.setText(obtenerInicial(gestionSesion.getNombre()));
+        txtViewLogoInicialSesion.setText(String.valueOf(gestionSesion.getNombre().charAt(0)));
 
-        //conseguir ArrayList de cuentas
-        cuentaArrayList = conseguirCuentas();
+        //conseguir ArrayList de cuentas y crear la lista de cuentas en el recycler view
+        cuentaArrayList = quitarSesionActualDelArray(new cuentasSQLiteOpenHelper(CuentasActivity.this).obtenerTodasLasCuentas());
         rcvCuentas= (RecyclerView) findViewById(R.id.rcvActivityCuentas);
         cuentasActivityAdapter = new CuentasActivityAdapter(this,cuentaArrayList);
         rcvCuentas.setAdapter(cuentasActivityAdapter);
@@ -57,7 +58,7 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
 
     @Override
     public void OnItemClick(int posicion) {
-        String usurioCuenta=cuentaArrayList.get(posicion).getUsuario();
+        int usurioCuenta=cuentaArrayList.get(posicion).getUsuario();
         String contrasenaCuenta=cuentaArrayList.get(posicion).getContrasena();
         String nombreCuenta=cuentaArrayList.get(posicion).getNombre();
         gestionSesion.iniciarSesion(usurioCuenta,contrasenaCuenta,nombreCuenta);
@@ -73,11 +74,12 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if(item.getItemId()==R.id.itemEditarCuentaPopupMenu){
-                    irEditarCuenta(cuentaArrayList.get(posicion).getId());
+                    irEditarCuenta(cuentaArrayList.get(posicion).getUsuario());
                     return true;
                 } else if (item.getItemId()==R.id.itemElminarCuentaPopupMenu) {
+                    new cuentasSQLiteOpenHelper(CuentasActivity.this).borrarCuenta(cuentaArrayList.get(posicion).getUsuario());
                     cuentaArrayList.remove(posicion);
-                    cuentasActivityAdapter.notifyItemRemoved(posicion);
+                    cuentasActivityAdapter.notifyItemRemoved(posicion);// Reemplaza con el ID de la cuenta que quieres eliminar
                     return  true;
                 }else{
                     return false;
@@ -85,17 +87,6 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
             }
         });
         popupMenu.show();
-    }
-    public ArrayList<Cuenta> conseguirCuentas(){
-        ArrayList<Cuenta> cuentas = new cuentasSQLiteOpenHelper(CuentasActivity.this).obtenerTodasLasCuentas();
-
-        cuentas.add(new Cuenta(25,"1244884","1244884","Luis German"));
-        cuentas.add(new Cuenta(26,"1151863","1151863","Elias"));
-        return cuentas;
-    }
-    public String obtenerInicial(String nombre) {
-        String inicial= String.valueOf(nombre.charAt(0));
-        return inicial;
     }
     public void volverAtras(View view) {
         irActivityConectado();
@@ -105,26 +96,44 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         irMainActivity();
     }
     public void irActivityConectado(){
-        Intent intent = new Intent(this, ConectadoActivity.class);
+        Intent i = new Intent(this,ConectadoActivity.class);
         finish();
-        startActivity(intent);
+        startActivity(i);
     }
     public void irMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }
+    //metodo para botno anadirCuenta en CuentasActivity
     public void irAnadirCuenta(View v){
         Intent intent = new Intent(this, AnadirCuentaActivity.class);
         finish();
         startActivity(intent);
     }
-    public void irEditarCuenta(int id){
+    //metodo para botonEditar en CuentasActivity
+    public void editar(View v){
+        irEditarCuenta(gestionSesion.getUsuario());
+    }
+    public void irEditarCuenta(int usuarioId){
         Intent intent = new Intent(this, EditarCuentaActivity.class);
-        intent.putExtra("id_Cuenta",id);
+        intent.putExtra("id_Cuenta",usuarioId);
         finish();
         startActivity(intent);
     }
+    public ArrayList<Cuenta> quitarSesionActualDelArray(ArrayList<Cuenta> cuentas) {
+        //creamos un objeto 'cuenta' con la sesion actual
+        Cuenta cuentaAsacar = new Cuenta(gestionSesion.getUsuario(),gestionSesion.getContrasena(),gestionSesion.getNombre());
 
-
+        //buscamos en el Array la cuenta
+        Iterator<Cuenta> iterator = cuentas.iterator();
+        while (iterator.hasNext()) {
+            Cuenta c = iterator.next();
+            if (c.equals(cuentaAsacar)) {
+                iterator.remove();
+                break;
+            }
+        }
+        return cuentas;
+    }
 }

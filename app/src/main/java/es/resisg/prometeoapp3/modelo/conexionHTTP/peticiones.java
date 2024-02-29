@@ -26,10 +26,6 @@ public class peticiones {
         this.contrasena = contrasena;
     }
 
-    public peticiones() {
-
-    }
-
     //metodos
     public ArrayList<ActuacionParticular> conseugirActuaciones () {
 
@@ -69,7 +65,7 @@ public class peticiones {
 
         String respuesta;
         try {
-            respuesta = new conexionHTTP().execute(url,usuario,contrasena).get();
+            respuesta = new conexionHTTP().execute(url,usuario,contrasena).get().trim();
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {

@@ -23,8 +23,8 @@ public class GestionSesion {
     }
 
     //Getters---------------------------------------------------------------------
-    public String getUsuario() {
-        return sharedPreferences.getString(KEY_USUARIO, "");
+    public int getUsuario() {
+        return sharedPreferences.getInt(KEY_USUARIO, 0);
     }
 
     public String getContrasena() {
@@ -36,15 +36,15 @@ public class GestionSesion {
     }
 
     //metodos---------------------------------------------------------------------------------------------
-    public void iniciarSesion(String usuario, String contrasena, String nombre) {
-        editor.putString(KEY_USUARIO, usuario);
+    public void iniciarSesion(int usuario, String contrasena, String nombre) {
+        editor.putInt(KEY_USUARIO, usuario);
         editor.putString(KEY_CONTRASENA, contrasena);
-        editor.putString(KEY_NOMBRE, nombre.replaceAll("[^a-zA-Z]", ""));
+        editor.putString(KEY_NOMBRE, nombre);
         editor.apply();
     }
 
     public boolean validarSesion() {
-        return !sharedPreferences.getString(KEY_USUARIO, "").isEmpty() &&
+        return !(sharedPreferences.getInt(KEY_USUARIO, 0) ==0) &&
                 !sharedPreferences.getString(KEY_CONTRASENA, "").isEmpty();
     }
 

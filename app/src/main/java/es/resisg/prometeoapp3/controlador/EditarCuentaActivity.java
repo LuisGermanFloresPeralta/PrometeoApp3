@@ -18,7 +18,7 @@ import es.resisg.prometeoapp3.modelo.cuentasSQLite.cuentasSQLiteOpenHelper;
 public class EditarCuentaActivity extends AppCompatActivity {
 
 
-    EditText edtUsuario,edtContrasena,edtNombre;
+    EditText edtContrasena,edtNombre;
     Bundle b;
     int id_Cuenta;
     cuentasSQLiteOpenHelper myDB;
@@ -33,7 +33,6 @@ public class EditarCuentaActivity extends AppCompatActivity {
     public void init(){
 
         //Relacionar campos EditText con la vista
-        edtUsuario = (EditText) findViewById(R.id.edtUsuarioEditarCuenta);
         edtContrasena=(EditText) findViewById(R.id.edtContrasenaEditarCuenta);
         edtNombre=(EditText) findViewById(R.id.edtNombreEditarCuenta);
 
@@ -47,8 +46,7 @@ public class EditarCuentaActivity extends AppCompatActivity {
         //Settear textos a las cajas de las vistas
         ArrayList<Cuenta> cuentaArrayList = myDB.obtenerTodasLasCuentas();
         for (Cuenta cuenta: cuentaArrayList) {
-            if(cuenta.getId()==id_Cuenta){
-                edtUsuario.setText(cuenta.getUsuario());
+            if(cuenta.getUsuario()==id_Cuenta){
                 edtContrasena.setText(cuenta.getContrasena());
                 edtNombre.setText(cuenta.getNombre());
             }
@@ -56,10 +54,10 @@ public class EditarCuentaActivity extends AppCompatActivity {
     }
 
     public void Editar(View view){
-        String usuario=edtUsuario.getText().toString().trim();
+        int usuario=id_Cuenta;
         String contrasena=edtContrasena.getText().toString().trim();
         String nombre =edtNombre.getText().toString().trim();
-        myDB.editarCuenta(id_Cuenta,usuario,contrasena,nombre);
+        myDB.editarCuenta(usuario,contrasena,nombre);
     }
     public void cancelarVolver(View view){
         Intent i = new Intent(this, CuentasActivity.class);

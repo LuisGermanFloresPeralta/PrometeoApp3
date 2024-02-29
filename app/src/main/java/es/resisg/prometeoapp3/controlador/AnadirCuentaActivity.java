@@ -25,7 +25,7 @@ public class AnadirCuentaActivity extends AppCompatActivity {
     }
 
     public void Anadir(View view){
-        String usuario = edtUsuario.getText().toString().trim();
+        int usuario = Integer.valueOf(edtUsuario.getText().toString().replaceAll("[^0-9]", ""));
         String contrasena = edtContrasena.getText().toString().trim();
         String nombre = edtNombre.getText().toString().trim();
         cuentasSQLiteOpenHelper myDB = new cuentasSQLiteOpenHelper(AnadirCuentaActivity.this);
