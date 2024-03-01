@@ -77,8 +77,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="143dp"
-        android:layout_height="123dp"
+        android:layout_width="185dp"
+        android:layout_height="107dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/mainImageView_Description"
         app:layout_constraintBottom_toTopOf="@+id/cardView"

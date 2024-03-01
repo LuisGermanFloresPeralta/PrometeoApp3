@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="143dp"
-        android:layout_height="123dp"
+        android:layout_width="185dp"
+        android:layout_height="107dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/mainImageView_Description"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
@@ -83,7 +83,7 @@
                 android:background="@drawable/border_radius"
                 android:ems="10"
                 android:hint="Nombre"
-                android:inputType="text|textPassword"
+                android:inputType="text"
                 android:paddingStart="15dp"
                 android:textColorHint="#757575"
                 tools:ignore="RtlSymmetry" />
