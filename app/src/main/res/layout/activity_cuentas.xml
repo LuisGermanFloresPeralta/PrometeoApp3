@@ -78,7 +78,7 @@
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/moradoNormal"
-                android:onClick="editar"
+                android:onClick="irEditar"
                 android:text="Editar" />
 
             <TextView

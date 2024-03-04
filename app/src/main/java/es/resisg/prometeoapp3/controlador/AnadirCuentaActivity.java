@@ -41,7 +41,6 @@ public class AnadirCuentaActivity extends AppCompatActivity {
             }
         }
 
-
     }
     public void cancelarVolver(View view){
         Intent i = new Intent(this, CuentasActivity.class);

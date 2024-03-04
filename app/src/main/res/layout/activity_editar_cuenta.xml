@@ -5,9 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controlador.EditarCuentaActivity">
+
+    <ImageView
+        android:id="@+id/imgLogoEditarCuenta"
+        android:layout_width="185dp"
+        android:layout_height="107dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/imgLogoEditarCuenta_Description"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewEditarCuenta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/prometeo_logo" />
+
     <androidx.cardview.widget.CardView
-        android:layout_width="338dp"
-        android:layout_height="313dp"
+        android:id="@+id/cardViewEditarCuenta"
+        android:layout_width="333dp"
+        android:layout_height="363dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,60 +31,105 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtViewTituloEditarCuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="@string/txtViewTituloEditarCuenta_String"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtViewUsuarioEditarCuenta"
+                android:layout_width="271dp"
+                android:layout_height="59dp"
+                android:background="@drawable/border_radius"
+                android:gravity="center_vertical"
+                android:hint="@string/txtViewUsuarioEditarCuenta_String"
+                android:paddingStart="15dp"
+                android:textColorHint="#757575"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/edtContrasenaEditarCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="271dp"
+                android:layout_height="59dp"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:background="@drawable/border_radius"
                 android:ems="10"
-                android:hint="contraseña"
-                android:inputType="text"
-                android:minHeight="48dp" />
+                android:hint="@string/edtContrasenaEditarCuenta_String"
+                android:inputType="text|textPassword"
+                android:paddingStart="15dp"
+                android:textColorHint="#757575"
+                tools:ignore="RtlSymmetry" />
 
             <EditText
                 android:id="@+id/edtNombreEditarCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="271dp"
+                android:layout_height="59dp"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:background="@drawable/border_radius"
                 android:ems="10"
-                android:hint="nombre"
+                android:hint="@string/edtNombreEditarCuenta_String"
                 android:inputType="text"
-                android:minHeight="48dp" />
+                android:paddingStart="15dp"
+                android:textColorHint="#757575"
+                tools:ignore="RtlSymmetry" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button5"
-                    android:layout_width="127dp"
+                    android:id="@+id/btnCancelarEditarCuenta"
+                    android:layout_width="137dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="cancelarVolver"
-                    android:text="cancelar" />
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/moradoNormal"
+                    android:onClick="cancelar"
+                    android:text="@string/btnCancelarEditarCuenta_String"
+                    app:cornerRadius="10dp" />
+
 
                 <Button
-                    android:id="@+id/btnEditarCuenta"
-                    android:layout_width="170dp"
+                    android:id="@+id/btnEditarEditarCuenta"
+                    android:layout_width="137dp"
                     android:layout_height="wrap_content"
-                    android:onClick="Editar"
-                    android:text="Editar" />
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/moradoNormal"
+                    android:onClick="editarCuenta"
+                    android:text="@string/btnEditarEditarCuenta_String"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnVolverEditarCuenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
-        android:onClick="cancelarVolver"
-        android:text="volver"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/transparente"
+        android:onClick="volver"
+        app:icon="@drawable/ic_volver"
+        app:iconGravity="textStart"
+        app:iconSize="28dp"
+        app:iconTint="@color/moradoNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

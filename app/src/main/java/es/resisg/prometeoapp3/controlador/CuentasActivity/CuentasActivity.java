@@ -73,11 +73,12 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                Cuenta c = cuentaArrayList.get(posicion);
                 if(item.getItemId()==R.id.itemEditarCuentaPopupMenu){
-                    irEditarCuenta(cuentaArrayList.get(posicion).getUsuario());
+                    irEditarCuenta(c.getUsuario(),c.getContrasena(),c.getNombre());
                     return true;
                 } else if (item.getItemId()==R.id.itemElminarCuentaPopupMenu) {
-                    new cuentasSQLiteOpenHelper(CuentasActivity.this).borrarCuenta(cuentaArrayList.get(posicion).getUsuario());
+                    new cuentasSQLiteOpenHelper(CuentasActivity.this).borrarCuenta(c.getUsuario());
                     cuentaArrayList.remove(posicion);
                     cuentasActivityAdapter.notifyItemRemoved(posicion);// Reemplaza con el ID de la cuenta que quieres eliminar
                     return  true;
@@ -112,12 +113,14 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         startActivity(intent);
     }
     //metodo para botonEditar en CuentasActivity
-    public void editar(View v){
-        irEditarCuenta(gestionSesion.getUsuario());
+    public void irEditar(View v){
+        irEditarCuenta(gestionSesion.getUsuario(),gestionSesion.getContrasena(),gestionSesion.getNombre());
     }
-    public void irEditarCuenta(int usuarioId){
+    public void irEditarCuenta(int usuario,String contrasena,String nombre){
         Intent intent = new Intent(this, EditarCuentaActivity.class);
-        intent.putExtra("id_Cuenta",usuarioId);
+        intent.putExtra("usuario_PUT_EXTRA",usuario);
+        intent.putExtra("contrasena_PUT_EXTRA",contrasena);
+        intent.putExtra("nombre_PUT_EXTRA",nombre);
         finish();
         startActivity(intent);
     }

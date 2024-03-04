@@ -79,4 +79,13 @@
     <string name="itemEditarCuentaPopupMenu_string">Editar</string>
     <string name="itemElminarCuentaPopupMenu_string">Eliminar</string>
 
+    <!--string_activity_editar_cuenta.xml-->
+    <string name="imgLogoEditarCuenta_Description">logo prometeo para editarCuenta Activity</string>
+    <string name="txtViewTituloEditarCuenta_String">Editar Cuenta IES LAS SALINAS</string>
+    <string name="txtViewUsuarioEditarCuenta_String">Usuario</string>
+    <string name="edtContrasenaEditarCuenta_String">Contraseña</string>
+    <string name="edtNombreEditarCuenta_String">Nombre</string>
+    <string name="btnCancelarEditarCuenta_String">Cacelar</string>
+    <string name="btnEditarEditarCuenta_String">Editar</string>
+
 </resources>
