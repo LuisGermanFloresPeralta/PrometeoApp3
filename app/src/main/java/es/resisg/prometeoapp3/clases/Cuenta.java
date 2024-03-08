@@ -39,16 +39,17 @@ public class Cuenta {
     }
 
     //Equals and hashCode
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Cuenta)) return false;
         Cuenta cuenta = (Cuenta) o;
-        return getUsuario() == cuenta.getUsuario() && Objects.equals(getContrasena(), cuenta.getContrasena()) && Objects.equals(getNombre(), cuenta.getNombre());
+        return getUsuario() == cuenta.getUsuario();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUsuario(), getContrasena(), getNombre());
+        return Objects.hash(getUsuario());
     }
 }
