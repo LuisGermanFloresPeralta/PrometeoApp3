@@ -4,6 +4,7 @@ import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,13 +55,14 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
     //como si fuera en un OnCreate de un MainActivity
     public static class actuacionesViewHodler extends RecyclerView.ViewHolder{
         TextView textView1,textView2,textView3,textView4;
+        SearchView shView;
         public actuacionesViewHodler(@NonNull View itemView, actuacionesInterface actuacionesInterface) {
             super(itemView);
             textView1=itemView.findViewById(R.id.txtViewNombreProfesorItem);
             textView2=itemView.findViewById(R.id.txtViewOtrasInformacionesItem);
             textView3=itemView.findViewById(R.id.txtViewFechaHoraItem);
             textView4=itemView.findViewById(R.id.txtViewComentarioItem);
-
+            shView=itemView.findViewById(R.id.shViewActuacionesFragment);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -5,9 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".controlador.ConectadoActivity.fragmetos.ActuacionesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewActuacionesParticulares"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <SearchView
+            android:id="@+id/shViewActuacionesFragment"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/fondo_search_view"
+            android:searchIcon="@drawable/ic_buscar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewActuacionesParticulares"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
 
 </FrameLayout>
