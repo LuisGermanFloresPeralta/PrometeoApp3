@@ -4,6 +4,8 @@ import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,22 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface;
 import es.resisg.prometeoapp3.clases.ActuacionParticular;
 
-public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.actuacionesViewHodler>{
+public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.actuacionesViewHodler> implements Filterable {
     //atributos
-    private final actuacionesInterface actuacionesInterface;
+    private ActuacionInterface actuacionSeleccionada;
     private List<ActuacionParticular> actuacionParticularArrayList;
-    public void setFilteredList(List<ActuacionParticular> actuacionesFiltradas){
-        this.actuacionParticularArrayList= actuacionesFiltradas;
-        notifyDataSetChanged();
-    }
+    private List<ActuacionParticular> actuacionParticularArrayListFiltrada;
 
     //Constructor
-    public actuacionesAdapter(es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface actuacionesInterface, ArrayList<ActuacionParticular> actuacionParticularArrayList) {
-        this.actuacionesInterface = actuacionesInterface;
+    public actuacionesAdapter(ArrayList<ActuacionParticular> actuacionParticularArrayList,ActuacionInterface actuacionSeleccionada ) {
+        this.actuacionSeleccionada= actuacionSeleccionada;
         this.actuacionParticularArrayList = actuacionParticularArrayList;
+        this.actuacionParticularArrayListFiltrada = actuacionParticularArrayList;
     }
 
     @NonNull
@@ -36,7 +35,7 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
     //aqui es donde se infla el layout con los items
     public actuacionesAdapter.actuacionesViewHodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.actuacion_item_layout,parent,false);
-        return new actuacionesAdapter.actuacionesViewHodler(view,actuacionesInterface);
+        return new actuacionesAdapter.actuacionesViewHodler(view);
     }
 
     @Override
@@ -56,11 +55,55 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
         return actuacionParticularArrayList.size();
     }
 
+
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults filterResults = new FilterResults();
+                /*si la cadena de texto esta vacia, el resultado filtrado sera igual a lista de actuaciones sin filtrar*/
+                if(constraint == null | constraint.length()==0){
+                    filterResults.count = actuacionParticularArrayListFiltrada.size();
+                    filterResults.values= actuacionParticularArrayListFiltrada;
+                }else {
+                    /*por el contrario, revisaremos si la cadena coincide con el nombre del profesor de cada actuacion,
+                    * si se da el caso añadimos esa actuacion ala lista de actuacione que tambien coincide con la cadena,
+                    * y por ultimo añadimos los datos nuevos a la respuesta */
+                    ArrayList<ActuacionParticular> actuacionesBuscadas = new ArrayList<>();
+                    for (ActuacionParticular a: actuacionParticularArrayListFiltrada) {
+                        if(a.getNombre_profesor().toLowerCase().contains(constraint.toString().toLowerCase())){
+                            actuacionesBuscadas.add(a);
+                        }
+                    }
+                    filterResults.count = actuacionesBuscadas.size();
+                    filterResults.values= actuacionesBuscadas;
+                }
+                return filterResults;
+            }
+
+            // aqui publicamos los resultados que hemos procesado anteriormente a la lista de actuaciones original, notificamos los cambios al adapter
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                actuacionParticularArrayList=(ArrayList<ActuacionParticular>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+        return filter;
+    }
+    // esta es el interface que nos abilita para anadir un OnClick a los elementos del Recycler View
+    // pasando como argumento el objeto actuacion particular
+    public interface ActuacionInterface{
+        void OnClickActuacion(ActuacionParticular actuacionParticular);
+    }
+
     /*aqui relacionamos los elementos de las vistas
-    como si fuera en un OnCreate de un MainActivity*/
-    public static class actuacionesViewHodler extends RecyclerView.ViewHolder{
+    como si fuera en un OnCreate de un MainActivity
+    , y setteamos el onclick a cada elemento del RecyclerView*/
+    public class actuacionesViewHodler extends RecyclerView.ViewHolder{
         TextView textView1,textView2,textView3,textView4;
-        public actuacionesViewHodler(@NonNull View itemView, actuacionesInterface actuacionesInterface) {
+        public actuacionesViewHodler(@NonNull View itemView) {
             super(itemView);
             textView1=itemView.findViewById(R.id.txtViewNombreProfesorItem);
             textView2=itemView.findViewById(R.id.txtViewOtrasInformacionesItem);
@@ -69,13 +112,7 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(actuacionesInterface != null){
-                        int pos = getBindingAdapterPosition();
-                        if(pos!= RecyclerView.NO_POSITION){
-                            actuacionesInterface.OnItemClick(pos);
-                        }
-                    }
-                }
+                    actuacionSeleccionada.OnClickActuacion(actuacionParticularArrayList.get(getBindingAdapterPosition()));                }
             });
         }
     }

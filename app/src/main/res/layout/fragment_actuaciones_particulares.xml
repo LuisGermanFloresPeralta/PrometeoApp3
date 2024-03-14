@@ -13,10 +13,11 @@
 
         <SearchView
             android:id="@+id/shViewActuacionesFragment"
-            android:layout_width="328dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="65dp"
             android:background="@drawable/fondo_search_view"
             android:searchIcon="@drawable/ic_buscar" />
 

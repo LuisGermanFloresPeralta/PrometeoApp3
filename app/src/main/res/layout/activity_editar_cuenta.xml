@@ -48,6 +48,7 @@
                 android:id="@+id/txtViewUsuarioEditarCuenta"
                 android:layout_width="271dp"
                 android:layout_height="59dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/border_radius"
                 android:gravity="center_vertical"
                 android:hint="@string/txtViewUsuarioEditarCuenta_String"

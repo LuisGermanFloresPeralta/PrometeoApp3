@@ -14,17 +14,15 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewAdapters.actuacionesAdapter;
-import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface;
 import es.resisg.prometeoapp3.controlador.DetallesItemActuacionesActivity;
 import es.resisg.prometeoapp3.clases.ActuacionParticular;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
 import es.resisg.prometeoapp3.modelo.conexionHTTP.peticiones;
 
-public class ActuacionesFragment extends Fragment implements actuacionesInterface {
+public class ActuacionesFragment extends Fragment implements actuacionesAdapter.ActuacionInterface {
     public ActuacionesFragment() {
         // Required empty public constructor
     }
@@ -55,11 +53,11 @@ public class ActuacionesFragment extends Fragment implements actuacionesInterfac
 
         //relacionamos el Recycler view con la parte gráfica de la aplicacion
         recyclerViewActuacionesParticulares = view.findViewById(R.id.recyclerViewActuacionesParticulares);
-        actuacionesAdapter = new actuacionesAdapter(this,actuacionParticularArrayList);
+        actuacionesAdapter = new actuacionesAdapter(actuacionParticularArrayList,this);
         recyclerViewActuacionesParticulares.setAdapter(actuacionesAdapter);
         recyclerViewActuacionesParticulares.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //inicializo el SearchView
+        //inicializo el SearchView y añadimos un onQueryTextChange para ejecutar esta accion por cada caracter pulsado
         shViewActuacionesFragment = view.findViewById(R.id.shViewActuacionesFragment);
         shViewActuacionesFragment.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -68,7 +66,7 @@ public class ActuacionesFragment extends Fragment implements actuacionesInterfac
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-                actuacionesAdapter.setFilteredList(filtrarArray(newText));
+                actuacionesAdapter.getFilter().filter(newText);
                 return true;
             }
         });
@@ -76,23 +74,14 @@ public class ActuacionesFragment extends Fragment implements actuacionesInterfac
         return  view;
     }
 
-    private List<ActuacionParticular> filtrarArray(String newText) {
-        List<ActuacionParticular> actuacionesFiltradas = new ArrayList<>();
-        for (ActuacionParticular actuacion: actuacionParticularArrayList) {
-            if(actuacion.getNombre_profesor().toLowerCase().contains(newText.toLowerCase())){
-                actuacionesFiltradas.add(actuacion);
-            }
-        }
-        return actuacionesFiltradas;
-    }
-
+    // Accion sel onClick anadido a cada item del RecyclerView de ActuacionesParticularesSS
     @Override
-    public void OnItemClick(int posicion) {
+    public void OnClickActuacion(ActuacionParticular actuacionParticular) {
         Intent i = new Intent(getActivity(), DetallesItemActuacionesActivity.class);
-        i.putExtra("Nombre_profesor",actuacionParticularArrayList.get(posicion).getNombre_profesor());
-        i.putExtra("Fecha",new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss").format(actuacionParticularArrayList.get(posicion).getFecha()));
-        i.putExtra("Tipo_actuacion",actuacionParticularArrayList.get(posicion).getTipo_actuacion());
-        i.putExtra("Comentario",actuacionParticularArrayList.get(posicion).getComentario());
+        i.putExtra("Nombre_profesor",actuacionParticular.getNombre_profesor());
+        i.putExtra("Fecha",new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss").format(actuacionParticular.getFecha()));
+        i.putExtra("Tipo_actuacion",actuacionParticular.getTipo_actuacion());
+        i.putExtra("Comentario",actuacionParticular.getComentario());
         startActivity(i);
     }
 }
