@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewAdapters.actuacionesAdapter;
@@ -34,9 +35,11 @@ public class ActuacionesFragment extends Fragment implements actuacionesInterfac
     //--------------------------------------------------------------------------------------------------------------------------
     //declarar variables
     private RecyclerView recyclerViewActuacionesParticulares;
+    private SearchView shViewActuacionesFragment;
     private actuacionesAdapter actuacionesAdapter;
     private ArrayList<ActuacionParticular> actuacionParticularArrayList= new ArrayList<>();
     private GestionSesion gestionSesion;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +59,31 @@ public class ActuacionesFragment extends Fragment implements actuacionesInterfac
         recyclerViewActuacionesParticulares.setAdapter(actuacionesAdapter);
         recyclerViewActuacionesParticulares.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        //inicializo el SearchView
+        shViewActuacionesFragment = view.findViewById(R.id.shViewActuacionesFragment);
+        shViewActuacionesFragment.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                actuacionesAdapter.setFilteredList(filtrarArray(newText));
+                return true;
+            }
+        });
+
         return  view;
+    }
+
+    private List<ActuacionParticular> filtrarArray(String newText) {
+        List<ActuacionParticular> actuacionesFiltradas = new ArrayList<>();
+        for (ActuacionParticular actuacion: actuacionParticularArrayList) {
+            if(actuacion.getNombre_profesor().toLowerCase().contains(newText.toLowerCase())){
+                actuacionesFiltradas.add(actuacion);
+            }
+        }
+        return actuacionesFiltradas;
     }
 
     @Override

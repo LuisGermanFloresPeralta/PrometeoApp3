@@ -4,22 +4,26 @@ import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface;
 import es.resisg.prometeoapp3.clases.ActuacionParticular;
 
-public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.actuacionesViewHodler> {
+public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.actuacionesViewHodler>{
     //atributos
     private final actuacionesInterface actuacionesInterface;
-    private ArrayList<ActuacionParticular> actuacionParticularArrayList;
+    private List<ActuacionParticular> actuacionParticularArrayList;
+    public void setFilteredList(List<ActuacionParticular> actuacionesFiltradas){
+        this.actuacionParticularArrayList= actuacionesFiltradas;
+        notifyDataSetChanged();
+    }
 
     //Constructor
     public actuacionesAdapter(es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewInterface.actuacionesInterface actuacionesInterface, ArrayList<ActuacionParticular> actuacionParticularArrayList) {
@@ -51,23 +55,22 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
     public int getItemCount() {
         return actuacionParticularArrayList.size();
     }
-    //aqui relacionamos los elementos de las vistas
-    //como si fuera en un OnCreate de un MainActivity
+
+    /*aqui relacionamos los elementos de las vistas
+    como si fuera en un OnCreate de un MainActivity*/
     public static class actuacionesViewHodler extends RecyclerView.ViewHolder{
         TextView textView1,textView2,textView3,textView4;
-        SearchView shView;
         public actuacionesViewHodler(@NonNull View itemView, actuacionesInterface actuacionesInterface) {
             super(itemView);
             textView1=itemView.findViewById(R.id.txtViewNombreProfesorItem);
             textView2=itemView.findViewById(R.id.txtViewOtrasInformacionesItem);
             textView3=itemView.findViewById(R.id.txtViewFechaHoraItem);
             textView4=itemView.findViewById(R.id.txtViewComentarioItem);
-            shView=itemView.findViewById(R.id.shViewActuacionesFragment);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(actuacionesInterface != null){
-                        int pos = getAdapterPosition();
+                        int pos = getBindingAdapterPosition();
                         if(pos!= RecyclerView.NO_POSITION){
                             actuacionesInterface.OnItemClick(pos);
                         }
