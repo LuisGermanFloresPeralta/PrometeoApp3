@@ -29,10 +29,8 @@ public class peticiones {
     //metodos
     public ArrayList<ActuacionParticular> conseugirActuaciones () {
 
-        ArrayList<ActuacionParticular> actuaciones;
+        ArrayList<ActuacionParticular> actuaciones= new ArrayList<>();
         try {
-            //instancio arrayList a devolver
-            actuaciones = new ArrayList<>();
             //hacemos la conexion http y lo almacenamos en String respuesta
             String respuesta = new conexionHTTP().execute(url, usuario, contrasena).get();
             //lo convertimos a JSONArray

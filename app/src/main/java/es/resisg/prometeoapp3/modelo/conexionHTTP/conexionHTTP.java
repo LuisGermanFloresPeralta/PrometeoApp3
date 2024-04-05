@@ -45,9 +45,8 @@ public class conexionHTTP extends AsyncTask<String,String,String> {
             }
             in.close();
 
-            //Devolverla respuesta
-            return respuesta.toString();
-
+            //Devolverla respuesta con los caractéres quitados
+            return quitarCaracteresNoDeseados(respuesta.toString());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -56,5 +55,15 @@ public class conexionHTTP extends AsyncTask<String,String,String> {
         }
 
         return null;
+    }
+    public static String quitarCaracteresNoDeseados (String respuesta) {
+
+        // Especifica los símbolos que deseas quitar
+        String pattern = "\uFEFF\uFEFF\uFEFF";
+
+        // Aplica la expresión regular para reemplazar los símbolos con una cadena vacía
+        String result = respuesta.replaceAll(pattern, "");
+
+        return result;
     }
 }
