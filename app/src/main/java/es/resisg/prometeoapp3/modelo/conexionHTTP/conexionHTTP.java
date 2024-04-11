@@ -59,10 +59,15 @@ public class conexionHTTP extends AsyncTask<String,String,String> {
     public static String quitarCaracteresNoDeseados (String respuesta) {
 
         // Especifica los símbolos que deseas quitar
-        String pattern = "\uFEFF\uFEFF\uFEFF";
+        String pattern1 = "\uFEFF\uFEFF\uFEFF";
+        String pattern2 = "\uFEFF\uFEFF";
+        String pattern3 = "\uFEFF";
+
 
         // Aplica la expresión regular para reemplazar los símbolos con una cadena vacía
-        String result = respuesta.replaceAll(pattern, "");
+        String result = respuesta.replaceAll(pattern1, "");
+        result =result.replaceAll(pattern2, "");
+        result =result.replaceAll(pattern3, "");
 
         return result;
     }

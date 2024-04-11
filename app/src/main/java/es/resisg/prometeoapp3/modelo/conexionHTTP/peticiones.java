@@ -104,7 +104,12 @@ public class peticiones {
             throw new RuntimeException(e);
         }
         // Devolvemos el ArrayList de evaluaciones
-        return evaluaciones;
+        if(evaluaciones.isEmpty()){
+            evaluaciones.add(new Evaluacion("No tienes ninguna Evaluacion"));
+            return evaluaciones;
+        }else {
+            return evaluaciones;
+        }
     }
     public String conseguirNombreUsuario(){
         String respuesta;

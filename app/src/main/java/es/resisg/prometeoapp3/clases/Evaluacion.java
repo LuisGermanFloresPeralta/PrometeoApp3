@@ -14,6 +14,11 @@ public class Evaluacion {
         Asignaturas = asignaturas;
     }
 
+    public Evaluacion(String evaluacion) {
+        Evaluacion = evaluacion;
+        Asignaturas = new ArrayList<>();
+    }
+
     //Getters
     public String getEvaluacion() {
         return Evaluacion;
