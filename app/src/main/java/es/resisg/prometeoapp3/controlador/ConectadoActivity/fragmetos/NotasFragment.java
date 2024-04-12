@@ -3,6 +3,8 @@ package es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.clases.Evaluacion;
+import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewAdapters.AsignaturasAdapter;
+import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewAdapters.evaluacionesAdapter;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
 import es.resisg.prometeoapp3.modelo.conexionHTTP.peticiones;
 
@@ -25,9 +29,10 @@ public class NotasFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-
+    private RecyclerView recyclerViewEvaluaciones;
     private TextView txtPruevaJson;
     private ArrayList<Evaluacion> evaluacionArrayList = new ArrayList<>();
+    private evaluacionesAdapter evaluacionesAdapter;
     private GestionSesion gestionSesion;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,11 +44,16 @@ public class NotasFragment extends Fragment {
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirEvaluaciones pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        evaluacionArrayList = new peticiones("http://192.168.1.50/WEB/APP/NotasLuisPrueva.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirEvaluaciones();
+        evaluacionArrayList = new peticiones("http://192.168.1.53/WEB/APP/NotasLuisPrueva.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirEvaluaciones();
 
-        //relacionamos los componentes de la parte gráfica oon la parte lógica de la aplicacion y probamos
-        txtPruevaJson = view.findViewById(R.id.txtPruevaJson);
-        txtPruevaJson.setText(evaluacionArrayList.get(0).getEvaluacion());
+        //relacionamos el Recycler view con la parte gráfica de la aplicacion
+        recyclerViewEvaluaciones = view.findViewById(R.id.recyclerViewEvaluaciones);
+        evaluacionesAdapter = new evaluacionesAdapter(evaluacionArrayList);
+        recyclerViewEvaluaciones.setAdapter(evaluacionesAdapter);
+        recyclerViewEvaluaciones.setHasFixedSize(true);
+        recyclerViewEvaluaciones.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
 
 
         // Devolvemos la vista

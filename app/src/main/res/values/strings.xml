@@ -89,4 +89,13 @@
     <string name="btnCancelarEditarCuenta_String">Cacelar</string>
     <string name="btnEditarEditarCuenta_String">Editar</string>
 
+    <!--string_evaluacion_item_layout-->
+    <string name="imgButtonEvaluacionItemLayout_String">boton para desplegar la evaluacion y ver las asiganturas o grupos</string>
+    <string name="txtViewTituloEvaluacionEvaluacionItemLayout_String">Título Evaluación</string>
+
+    <!--string_evaluacion_item_layout-->
+    <string name="imgButtonAsignaturaItemLayout_String">boton para desplegar la asigantura y ver las actividades o grupos</string>
+    <string name="txtViewTituloAsignaturaAsignaturaItemLayout_String">Título Asignatura</string>
+
+
 </resources>
