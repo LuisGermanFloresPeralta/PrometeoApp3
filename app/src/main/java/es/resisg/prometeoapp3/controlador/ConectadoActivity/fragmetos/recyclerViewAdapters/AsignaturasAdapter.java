@@ -10,8 +10,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import es.resisg.prometeoapp3.R;
@@ -24,6 +26,7 @@ public class AsignaturasAdapter extends RecyclerView.Adapter<AsignaturasAdapter.
     private List<Actividad> actividadesDeEstaAsignaturaArrayList;
     public AsignaturasAdapter(List<Asignatura> asignaturaArrayList) {
         this.asignaturaArrayList = asignaturaArrayList;
+        this.actividadesDeEstaAsignaturaArrayList = new ArrayList<>();
     }
 
     @NonNull
@@ -37,6 +40,25 @@ public class AsignaturasAdapter extends RecyclerView.Adapter<AsignaturasAdapter.
     public void onBindViewHolder(@NonNull asignaturasViewHolder holder, int position) {
         Asignatura asignatura = asignaturaArrayList.get(position);
         holder.txtViewTituloAsignatura.setText("▸ "+asignatura.getAsignatura());
+
+        holder.layoutExpandibleAsignatura.setVisibility(asignatura.isExpandible() ? View.VISIBLE : View.GONE);
+        if(asignatura.isExpandible()){
+            holder.imgBtnExpandirAsignatura.setImageResource(R.drawable.ic_arrowup);
+        }else{
+            holder.imgBtnExpandirAsignatura.setImageResource(R.drawable.ic_arrowdown);
+        }
+
+        actividadesAdapter actividadesAdapter = new actividadesAdapter(actividadesDeEstaAsignaturaArrayList);
+        holder.recyclerViewActividades.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
+        holder.recyclerViewActividades.setHasFixedSize(true);
+        holder.recyclerViewActividades.setAdapter(actividadesAdapter);
+        holder.linearLayoutAsignatura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                asignatura.setExpandible(!asignatura.isExpandible());
+                notifyItemChanged(holder.getBindingAdapterPosition());
+            }
+        });
     }
 
     @Override

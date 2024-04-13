@@ -97,5 +97,11 @@
     <string name="imgButtonAsignaturaItemLayout_String">boton para desplegar la asigantura y ver las actividades o grupos</string>
     <string name="txtViewTituloAsignaturaAsignaturaItemLayout_String">Título Asignatura</string>
 
+    <!--string_actividad_item_layout-->
+    <string name="tituloActividad_actividadItemLayout_String">Actividad:</string>
+    <string name="nombreProfesor_actividadItemLayout_String">Profesor:</string>
+    <string name="fechaActividad_actividadItemLayout_String">Fecha:</string>
+    <string name="notaActividad_actividadItemLayout_String">Nota:</string>
+
 
 </resources>

@@ -8,21 +8,74 @@
     android:minHeight="70dp"
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp">
+
     <LinearLayout
         android:id="@+id/LinearLayoutActividadItemLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp">
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/layoutExpandibleActividadItemLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tituloActividad_ActividadItemLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="50dp"
+                    android:text="@string/tituloActividad_actividadItemLayout_String"
+                    android:textColor="@color/azulCianOscuro"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/nombreProfesor_ActividadItemLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="50dp"
+                    android:text="@string/nombreProfesor_actividadItemLayout_String"
+                    android:textColor="@color/azulCianOscuro"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fechaActividad_ActividadItemLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="50dp"
+                    android:text="@string/fechaActividad_actividadItemLayout_String"
+                    android:textColor="@color/azulCianOscuro"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/notaActividad_ActividadItemLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="50dp"
+                    android:text="@string/notaActividad_actividadItemLayout_String"
+                    android:textColor="@color/azulCianOscuro"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/azulCianOscuro" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
