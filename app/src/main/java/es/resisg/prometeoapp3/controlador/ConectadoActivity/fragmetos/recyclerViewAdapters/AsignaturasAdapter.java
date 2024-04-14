@@ -56,6 +56,7 @@ public class AsignaturasAdapter extends RecyclerView.Adapter<AsignaturasAdapter.
             @Override
             public void onClick(View v) {
                 asignatura.setExpandible(!asignatura.isExpandible());
+                actividadesDeEstaAsignaturaArrayList=asignatura.getActividades();
                 notifyItemChanged(holder.getBindingAdapterPosition());
             }
         });
