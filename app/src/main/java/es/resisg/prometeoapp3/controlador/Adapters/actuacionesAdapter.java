@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewAdapters;
+package es.resisg.prometeoapp3.controlador.Adapters;
 
 import android.icu.text.SimpleDateFormat;
 import android.view.LayoutInflater;
@@ -55,7 +55,24 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
         return actuacionParticularArrayList.size();
     }
 
-
+    /*aqui relacionamos los elementos de las vistas
+       como si fuera en un OnCreate de un MainActivity
+       , y setteamos el onclick a cada elemento del RecyclerView*/
+    public class actuacionesViewHodler extends RecyclerView.ViewHolder{
+        TextView textView1,textView2,textView3,textView4;
+        public actuacionesViewHodler(@NonNull View itemView) {
+            super(itemView);
+            textView1=itemView.findViewById(R.id.txtViewNombreProfesorItem);
+            textView2=itemView.findViewById(R.id.txtViewOtrasInformacionesItem);
+            textView3=itemView.findViewById(R.id.txtViewFechaHoraItem);
+            textView4=itemView.findViewById(R.id.txtViewComentarioItem);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    actuacionSeleccionada.OnClickActuacion(actuacionParticularArrayList.get(getBindingAdapterPosition()));                }
+            });
+        }
+    }
 
     @Override
     public Filter getFilter() {
@@ -73,7 +90,7 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
                     * y por ultimo añadimos los datos nuevos a la respuesta */
                     ArrayList<ActuacionParticular> actuacionesBuscadas = new ArrayList<>();
                     for (ActuacionParticular a: actuacionParticularArrayListFiltrada) {
-                        if(a.getNombre_profesor().toLowerCase().contains(constraint.toString().toLowerCase())){
+                        if( (a.getNombre_profesor().toLowerCase().contains(constraint.toString().toLowerCase())) || (new SimpleDateFormat("dd/MM/yyyy").format(a.getFecha())).contains(constraint.toString().toLowerCase()) ){
                             actuacionesBuscadas.add(a);
                         }
                     }
@@ -98,22 +115,5 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
         void OnClickActuacion(ActuacionParticular actuacionParticular);
     }
 
-    /*aqui relacionamos los elementos de las vistas
-    como si fuera en un OnCreate de un MainActivity
-    , y setteamos el onclick a cada elemento del RecyclerView*/
-    public class actuacionesViewHodler extends RecyclerView.ViewHolder{
-        TextView textView1,textView2,textView3,textView4;
-        public actuacionesViewHodler(@NonNull View itemView) {
-            super(itemView);
-            textView1=itemView.findViewById(R.id.txtViewNombreProfesorItem);
-            textView2=itemView.findViewById(R.id.txtViewOtrasInformacionesItem);
-            textView3=itemView.findViewById(R.id.txtViewFechaHoraItem);
-            textView4=itemView.findViewById(R.id.txtViewComentarioItem);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    actuacionSeleccionada.OnClickActuacion(actuacionParticularArrayList.get(getBindingAdapterPosition()));                }
-            });
-        }
-    }
+
 }

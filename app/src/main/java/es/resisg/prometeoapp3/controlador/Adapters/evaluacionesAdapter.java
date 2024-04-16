@@ -1,9 +1,9 @@
-package es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.recyclerViewAdapters;
+package es.resisg.prometeoapp3.controlador.Adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -48,11 +48,8 @@ public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapte
         holder.txtViewTituloEvaluacion.setText(evaluacion.getEvaluacion());
 
         holder.layoutExpandibleEvaluacion.setVisibility(evaluacion.isExpandible() ? View.VISIBLE : View.GONE);
-        if(evaluacion.isExpandible()){
-            holder.imgBtnExpandirEvaluacion.setImageResource(R.drawable.ic_arrowup);
-        }else {
-            holder.imgBtnExpandirEvaluacion.setImageResource(R.drawable.ic_arrowdown);
-        }
+        holder.imgBtnExpandirEvaluacion.setImageResource(evaluacion.isExpandible() ? R.drawable.ic_arrowup : R.drawable.ic_arrowdown);
+
 
         AsignaturasAdapter asignaturasAdapter = new AsignaturasAdapter(asignaturasDeEstaEvaluacionArrayList);
         holder.recyclerViewAsignaturas.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
@@ -61,6 +58,7 @@ public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapte
         holder.linearLayoutEvaluacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 evaluacion.setExpandible(!evaluacion.isExpandible());
                 asignaturasDeEstaEvaluacionArrayList= evaluacion.getAsignaturas();
                 notifyItemChanged(holder.getBindingAdapterPosition());
