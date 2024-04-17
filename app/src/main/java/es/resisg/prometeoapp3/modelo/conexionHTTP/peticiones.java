@@ -14,6 +14,7 @@ import es.resisg.prometeoapp3.modelo.clases.Actividad;
 import es.resisg.prometeoapp3.modelo.clases.ActuacionParticular;
 import es.resisg.prometeoapp3.modelo.clases.Asignatura;
 import es.resisg.prometeoapp3.modelo.clases.Evaluacion;
+import es.resisg.prometeoapp3.modelo.clases.Falta;
 
 public class peticiones {
 
@@ -122,5 +123,34 @@ public class peticiones {
         }
 
         return respuesta;
+    }
+
+    public ArrayList<Falta> conseguirFaltas(){
+        //Instanciamos un ArrayList de faltas
+        ArrayList<Falta> faltasArrayList = new ArrayList<>();
+
+        try {
+            //hacemos la peticion al servidor y almacenamos la respuesta en una variable String
+            String respuesta = new conexionHTTP().execute(url,usuario,contrasena).get().trim();
+            JSONArray jsonArrayFaltas = new JSONArray(respuesta);
+
+            for (int i=0;i<jsonArrayFaltas.length();i++){//Recorremos el JSONArray de faltas
+
+                JSONObject jsonObjectFalta = jsonArrayFaltas.getJSONObject(i);//tomamos el objeto JSONObject y asignamos cada valor a las variables String
+                String diaSemanaFecha = jsonObjectFalta.getString("Dia_semana_y_Fecha");
+                String tipoFalta= jsonObjectFalta.getString("Tipo_falta");
+                String horaFalta=jsonObjectFalta.getString("Hora_falta");
+                faltasArrayList.add(new Falta(diaSemanaFecha,tipoFalta,horaFalta));// se anade el nuevo objeto Falta al array de faltas
+            }
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        //Devolvemos el ArrayList
+        return faltasArrayList;
     }
 }

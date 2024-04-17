@@ -34,7 +34,7 @@ public class AnadirCuentaActivity extends AppCompatActivity {
         String contrasena = edtContrasena.getText().toString().trim();
         String nombre = edtNombre.getText().toString().trim();
         if(validarUsuarioContrasenaNombre(usuario,contrasena,nombre)){
-            String respuesta =new peticiones("http://www.ieslassalinas.org/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
+            String respuesta =new peticiones("http://192.168.1.49/WEB/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
             if(respuesta.equals("0")){
                 Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
             }else {
@@ -58,16 +58,16 @@ public class AnadirCuentaActivity extends AppCompatActivity {
             Toast.makeText(this, "Tienes que rellenar todos los campos", Toast.LENGTH_SHORT).show();
             return false;
         }else if (usuario.isEmpty()){
-            Toast.makeText(this, "El campo usuario esta vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "usuario esta vacío", Toast.LENGTH_SHORT).show();
             return false;
         }else if (contrasena.isEmpty()) {
-            Toast.makeText(this, "El campo contraseña esta vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "contraseña esta vacío", Toast.LENGTH_SHORT).show();
             return false;
         } else if (nombre.isEmpty() && chBoxNombreDefecto.isChecked()==false){
-            Toast.makeText(this, "El campo nombre esta vacío", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "nombre esta vacío O marque NombreDefecto", Toast.LENGTH_SHORT).show();
             return false;
         } else if(!(usuario.matches(".*\\d.*"))){
-            Toast.makeText(this, "El campo usuario debe contener números", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "El usuario debe contener números", Toast.LENGTH_SHORT).show();
             return false;
         }
         else {

@@ -93,6 +93,8 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         irActivityConectado();
     }
     public void CerrarSesion(View view){
+        cuentasSQLiteOpenHelper cuentasSQLiteOpenHelper = new cuentasSQLiteOpenHelper(this);
+        cuentasSQLiteOpenHelper.borrarCuenta(Integer.valueOf(gestionSesion.getUsuario()));
         gestionSesion.cerrarSesion();
         irMainActivity();
     }
