@@ -9,11 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.Asignatura;
-import es.resisg.prometeoapp3.clases.Evaluacion;
+import es.resisg.prometeoapp3.modelo.clases.Asignatura;
+import es.resisg.prometeoapp3.modelo.clases.Evaluacion;
 
 public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapter.evaluacionesViewHolder>{
 

@@ -10,15 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.Asignatura;
-import es.resisg.prometeoapp3.clases.Evaluacion;
+import es.resisg.prometeoapp3.modelo.clases.Asignatura;
+import es.resisg.prometeoapp3.modelo.clases.Evaluacion;
 import es.resisg.prometeoapp3.controlador.Adapters.evaluacionesAdapter;
 import es.resisg.prometeoapp3.controlador.DetallesItemEvaluacionesActivity;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
@@ -47,7 +44,7 @@ public class NotasFragment extends Fragment implements evaluacionesAdapter.Evalu
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirEvaluaciones pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        evaluacionArrayList = new peticiones("http://192.168.1.33/WEB/APP/NotasLuisPrueva.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirEvaluaciones();
+        evaluacionArrayList = new peticiones("http://192.168.1.203/WEB/APP/NotasLuisPrueva.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirEvaluaciones();
 
         //relacionamos el Recycler view con la parte gráfica de la aplicacion
         recyclerViewEvaluaciones = view.findViewById(R.id.recyclerViewEvaluaciones);

@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="0dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="5dp"
     android:minHeight="70dp"
-    app:cardCornerRadius="0dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="0dp">
 
     <LinearLayout
@@ -17,7 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="63dp">
+            android:layout_height="58dp">
 
             <TextView
                 android:id="@+id/txtViewTituloAsignatura_aignaturaItemLayout"

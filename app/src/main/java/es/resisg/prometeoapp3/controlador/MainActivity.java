@@ -11,7 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.Cuenta;
+import es.resisg.prometeoapp3.modelo.clases.Cuenta;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
 import es.resisg.prometeoapp3.modelo.conexionHTTP.peticiones;
@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
         //relacionar atributos con la parte gráfica
         edtUsuario =(EditText) findViewById(R.id.edtUsuario_main_layout);
         edtContrasena =(EditText) findViewById(R.id.edtContrasena_main_layout);
-        //validamos la sesion
-        String respuesta =new peticiones("http://192.168.1.33/WEB/APP/appValidaUsuario.php",String.valueOf(gestionSesion.getUsuario()),gestionSesion.getContrasena()).conseguirNombreUsuario();
-        if (gestionSesion.validarSesion()==true && respuesta!="0") {
-            irActivityConectado();
-        }else {
+        //validamos la sesion y que comprobar que no se ha cambiado la contrasena en otra plataforma.
+        String respuesta =new peticiones("http://192.168.1.203/WEB/APP/appValidaUsuario.php",String.valueOf(gestionSesion.getUsuario()),gestionSesion.getContrasena()).conseguirNombreUsuario();
+        if (respuesta.equals("0")) {
             Toast.makeText(this, "Se han cambiado las credenciales desde otro dispositivo", Toast.LENGTH_SHORT).show();
+        }else {
+            irActivityConectado();
         }
     }
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         String contrasena=edtContrasena.getText().toString();
         //pasamos usuario,contrasena al metodo validarUsuarioContrasena
         if(validarUsuarioContrasena(usuario,contrasena)){
-            String respuesta =new peticiones("http://192.168.1.33/WEB/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
+            String respuesta =new peticiones("http://192.168.1.203/WEB/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
             if(respuesta.equals("0")){
                 Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
                 borrarCampos();

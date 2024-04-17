@@ -1,4 +1,4 @@
-package es.resisg.prometeoapp3.clases;
+package es.resisg.prometeoapp3.modelo.clases;
 
 import java.io.Serializable;
 

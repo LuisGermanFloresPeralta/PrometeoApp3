@@ -11,8 +11,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-import es.resisg.prometeoapp3.clases.Cuenta;
-import es.resisg.prometeoapp3.controlador.MainActivity;
+import es.resisg.prometeoapp3.modelo.clases.Cuenta;
 
 public class cuentasSQLiteOpenHelper extends SQLiteOpenHelper {
 

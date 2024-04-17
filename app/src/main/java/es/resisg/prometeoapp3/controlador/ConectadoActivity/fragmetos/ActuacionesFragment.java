@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.Adapters.actuacionesAdapter;
 import es.resisg.prometeoapp3.controlador.DetallesItemActuacionesActivity;
-import es.resisg.prometeoapp3.clases.ActuacionParticular;
+import es.resisg.prometeoapp3.modelo.clases.ActuacionParticular;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
 import es.resisg.prometeoapp3.modelo.conexionHTTP.peticiones;
 
@@ -49,7 +49,7 @@ public class ActuacionesFragment extends Fragment implements actuacionesAdapter.
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirActuacionesParticulares pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        actuacionParticularArrayList = new peticiones("http://192.168.1.33/WEB/APP/appActuaciones.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirActuaciones();
+        actuacionParticularArrayList = new peticiones("http://192.168.1.203/WEB/APP/appActuaciones.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirActuaciones();
 
         //relacionamos el Recycler view con la parte gráfica de la aplicacion
         recyclerViewActuacionesParticulares = view.findViewById(R.id.recyclerViewActuacionesParticulares);

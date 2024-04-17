@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.Actividad;
-import es.resisg.prometeoapp3.clases.Asignatura;
+import es.resisg.prometeoapp3.modelo.clases.Asignatura;
 
 public class AsignaturasAdapter extends RecyclerView.Adapter<AsignaturasAdapter.asignaturasViewHolder> {
 

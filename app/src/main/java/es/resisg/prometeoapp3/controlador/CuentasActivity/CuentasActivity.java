@@ -17,7 +17,7 @@ import java.util.Iterator;
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.AnadirCuentaActivity;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
-import es.resisg.prometeoapp3.clases.Cuenta;
+import es.resisg.prometeoapp3.modelo.clases.Cuenta;
 import es.resisg.prometeoapp3.controlador.EditarCuentaActivity;
 import es.resisg.prometeoapp3.controlador.MainActivity;
 import es.resisg.prometeoapp3.modelo.GestionSesion;

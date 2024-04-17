@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.ActuacionParticular;
+import es.resisg.prometeoapp3.modelo.clases.ActuacionParticular;
 
 public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.actuacionesViewHodler> implements Filterable {
     //atributos

@@ -9,13 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.PrimitiveIterator;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.Asignatura;
+import es.resisg.prometeoapp3.modelo.clases.Asignatura;
 import es.resisg.prometeoapp3.controlador.Adapters.AsignaturasAdapter;
-import es.resisg.prometeoapp3.controlador.Adapters.evaluacionesAdapter;
 
 public class DetallesItemEvaluacionesActivity extends AppCompatActivity {
 

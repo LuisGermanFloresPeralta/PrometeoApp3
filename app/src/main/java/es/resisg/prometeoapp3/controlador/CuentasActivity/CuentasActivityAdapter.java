@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.Cuenta;
+import es.resisg.prometeoapp3.modelo.clases.Cuenta;
 
 public class CuentasActivityAdapter extends RecyclerView.Adapter<CuentasActivityAdapter.cuentasViewHolder> {
 

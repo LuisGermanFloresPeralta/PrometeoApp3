@@ -15,10 +15,12 @@
             android:id="@+id/shViewActuacionesFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="65dp"
+            android:layout_marginEnd="65dp"
             android:background="@drawable/fondo_search_view"
+            android:queryHint="Fecha o NombreProfesor"
+            android:searchHintIcon="@drawable/ic_buscar"
             android:searchIcon="@drawable/ic_buscar" />
 
         <androidx.recyclerview.widget.RecyclerView

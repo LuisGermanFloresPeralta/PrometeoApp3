@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
-import es.resisg.prometeoapp3.clases.Actividad;
-import es.resisg.prometeoapp3.clases.ActuacionParticular;
-import es.resisg.prometeoapp3.clases.Asignatura;
-import es.resisg.prometeoapp3.clases.Evaluacion;
+import es.resisg.prometeoapp3.modelo.clases.Actividad;
+import es.resisg.prometeoapp3.modelo.clases.ActuacionParticular;
+import es.resisg.prometeoapp3.modelo.clases.Asignatura;
+import es.resisg.prometeoapp3.modelo.clases.Evaluacion;
 
 public class peticiones {
 

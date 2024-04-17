@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import es.resisg.prometeoapp3.R;
-import es.resisg.prometeoapp3.clases.Actividad;
+import es.resisg.prometeoapp3.modelo.clases.Actividad;
 
 public class actividadesAdapter extends RecyclerView.Adapter<actividadesAdapter.actividadesViewHolder> {
 

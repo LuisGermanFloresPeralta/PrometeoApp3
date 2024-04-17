@@ -93,8 +93,10 @@
                 android:layout_width="271dp"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/moradoOscuro"
+                android:checked="false"
+                android:focusable="auto"
                 android:text="@string/mainCheckBox_String"
-                app:checkedState="checked" />
+                app:checkedState="unchecked" />
 
             <LinearLayout
                 android:layout_width="match_parent"
