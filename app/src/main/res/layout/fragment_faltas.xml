@@ -3,5 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3D5AFE"
-    tools:context=".controlador.ConectadoActivity.fragmetos.FaltasFragment" />
+    tools:context=".controlador.ConectadoActivity.fragmetos.FaltasFragment" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <SearchView
+            android:id="@+id/shViewFaltasFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="65dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/fondo_search_view"
+            android:queryHint="Fecha"
+            android:searchHintIcon="@drawable/ic_buscar"
+            android:searchIcon="@drawable/ic_buscar">
+
+        </SearchView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFaltas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</FrameLayout>

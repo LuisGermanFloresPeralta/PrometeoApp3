@@ -149,6 +149,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="asignaturas">Asignaturas</string>
+    <string name="textview">TextView</string>
 
 
 </resources>

@@ -81,7 +81,7 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
             protected FilterResults performFiltering(CharSequence constraint) {
                 FilterResults filterResults = new FilterResults();
                 /*si la cadena de texto esta vacia, el resultado filtrado sera igual a lista de actuaciones sin filtrar*/
-                if(constraint == null | constraint.length()==0){
+                if(constraint == null || constraint.length()==0){
                     filterResults.count = actuacionParticularArrayListFiltrada.size();
                     filterResults.values= actuacionParticularArrayListFiltrada;
                 }else {
@@ -109,6 +109,7 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
         };
         return filter;
     }
+
     // esta es el interface que nos abilita para anadir un OnClick a los elementos del Recycler View
     // pasando como argumento el objeto actuacion particular
     public interface ActuacionInterface{

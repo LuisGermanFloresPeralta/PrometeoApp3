@@ -16,12 +16,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="162dp">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/txtViewTituloEvaluacion_evaluacionItemLayout"
-                android:layout_width="333dp"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="121dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/txtViewTituloEvaluacionEvaluacionItemLayout_String"
