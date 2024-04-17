@@ -1,6 +1,8 @@
 package es.resisg.prometeoapp3.clases;
 
-public class Actividad {
+import java.io.Serializable;
+
+public class Actividad implements Serializable {
 
     //atributos
     String Nombre_Profesor,Fecha,Actividad,Nota;

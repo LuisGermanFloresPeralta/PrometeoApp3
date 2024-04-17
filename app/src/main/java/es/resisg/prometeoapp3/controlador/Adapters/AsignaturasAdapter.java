@@ -21,11 +21,9 @@ import es.resisg.prometeoapp3.clases.Asignatura;
 
 public class AsignaturasAdapter extends RecyclerView.Adapter<AsignaturasAdapter.asignaturasViewHolder> {
 
-    private List<Asignatura> asignaturaArrayList;
-    private List<Actividad> actividadesDeEstaAsignaturaArrayList;
-    public AsignaturasAdapter(List<Asignatura> asignaturaArrayList) {
+    private ArrayList<Asignatura> asignaturaArrayList;
+    public AsignaturasAdapter(ArrayList<Asignatura> asignaturaArrayList) {
         this.asignaturaArrayList = asignaturaArrayList;
-        this.actividadesDeEstaAsignaturaArrayList = new ArrayList<>();
     }
 
     @NonNull
@@ -41,24 +39,20 @@ public class AsignaturasAdapter extends RecyclerView.Adapter<AsignaturasAdapter.
         holder.txtViewTituloAsignatura.setText("▸ "+asignatura.getAsignatura());
 
         holder.layoutExpandibleAsignatura.setVisibility(asignatura.isExpandible() ? View.VISIBLE : View.GONE);
-        if(asignatura.isExpandible()){
-            holder.imgBtnExpandirAsignatura.setImageResource(R.drawable.ic_arrowup);
-        }else{
-            holder.imgBtnExpandirAsignatura.setImageResource(R.drawable.ic_arrowdown);
-        }
+        holder.imgBtnExpandirAsignatura.setImageResource(asignatura.isExpandible() ? R.drawable.ic_arrowup : R.drawable.ic_arrowdown);
 
-        actividadesAdapter actividadesAdapter = new actividadesAdapter(actividadesDeEstaAsignaturaArrayList);
-        holder.recyclerViewActividades.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
-        holder.recyclerViewActividades.setHasFixedSize(true);
-        holder.recyclerViewActividades.setAdapter(actividadesAdapter);
         holder.linearLayoutAsignatura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 asignatura.setExpandible(!asignatura.isExpandible());
-                actividadesDeEstaAsignaturaArrayList=asignatura.getActividades();
                 notifyItemChanged(holder.getBindingAdapterPosition());
             }
         });
+
+        actividadesAdapter actividadesAdapter = new actividadesAdapter(asignatura.getActividades());
+        holder.recyclerViewActividades.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
+        holder.recyclerViewActividades.setHasFixedSize(true);
+        holder.recyclerViewActividades.setAdapter(actividadesAdapter);
     }
 
     @Override

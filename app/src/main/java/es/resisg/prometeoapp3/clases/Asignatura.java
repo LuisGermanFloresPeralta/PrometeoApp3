@@ -1,8 +1,9 @@
 package es.resisg.prometeoapp3.clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Asignatura {
+public class Asignatura  implements Serializable {
 
     //Atributos
     String Asignatura;
@@ -15,6 +16,7 @@ public class Asignatura {
         Actividades = actividades;
         expandible = false;
     }
+
 
     //Getters
     public String getAsignatura() {

@@ -1,5 +1,6 @@
 package es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,15 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import es.resisg.prometeoapp3.R;
+import es.resisg.prometeoapp3.clases.Asignatura;
 import es.resisg.prometeoapp3.clases.Evaluacion;
 import es.resisg.prometeoapp3.controlador.Adapters.evaluacionesAdapter;
+import es.resisg.prometeoapp3.controlador.DetallesItemEvaluacionesActivity;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
 import es.resisg.prometeoapp3.modelo.conexionHTTP.peticiones;
 
-public class NotasFragment extends Fragment {
+public class NotasFragment extends Fragment implements evaluacionesAdapter.EvaluacionInterface {
     public NotasFragment() {
         // Required empty public constructor
     }
@@ -29,7 +34,6 @@ public class NotasFragment extends Fragment {
     }
 
     private RecyclerView recyclerViewEvaluaciones;
-    private TextView txtPruevaJson;
     private ArrayList<Evaluacion> evaluacionArrayList = new ArrayList<>();
     private evaluacionesAdapter evaluacionesAdapter;
     private GestionSesion gestionSesion;
@@ -43,19 +47,26 @@ public class NotasFragment extends Fragment {
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirEvaluaciones pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        evaluacionArrayList = new peticiones("http://192.168.1.194/WEB/APP/NotasLuisPrueva.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirEvaluaciones();
+        evaluacionArrayList = new peticiones("http://192.168.1.33/WEB/APP/NotasLuisPrueva.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirEvaluaciones();
 
         //relacionamos el Recycler view con la parte gráfica de la aplicacion
         recyclerViewEvaluaciones = view.findViewById(R.id.recyclerViewEvaluaciones);
-        evaluacionesAdapter = new evaluacionesAdapter(evaluacionArrayList);
+        evaluacionesAdapter = new evaluacionesAdapter(evaluacionArrayList,this);
         recyclerViewEvaluaciones.setAdapter(evaluacionesAdapter);
         recyclerViewEvaluaciones.setHasFixedSize(true);
         recyclerViewEvaluaciones.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-
-
         // Devolvemos la vista
         return view;
+    }
+
+    @Override
+    public void OnClickEvaluacion(ArrayList<Asignatura> asignaturas) {
+
+        Intent i = new Intent(getActivity(), DetallesItemEvaluacionesActivity.class);
+        i.putExtra("Asignaturas", asignaturas);
+        startActivity(i);
+
     }
 }

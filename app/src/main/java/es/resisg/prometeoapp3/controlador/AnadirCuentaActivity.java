@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import es.resisg.prometeoapp3.modelo.cuentasSQLite.cuentasSQLiteOpenHelper;
 public class AnadirCuentaActivity extends AppCompatActivity {
 
     EditText edtUsuario,edtContrasena,edtNombre;
+    CheckBox chBoxNombreDefecto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class AnadirCuentaActivity extends AppCompatActivity {
         edtUsuario=(EditText) findViewById(R.id.edtUsuarioAnadirCuenta);
         edtContrasena=(EditText) findViewById(R.id.edtContrasenaAnadirCuenta);
         edtNombre = (EditText) findViewById(R.id.edtNombreAnadirCuenta);
+        chBoxNombreDefecto =(CheckBox) findViewById(R.id.checkBoxAnadirCuenta);
     }
 
     public void Anadir(View view){
@@ -31,13 +34,16 @@ public class AnadirCuentaActivity extends AppCompatActivity {
         String contrasena = edtContrasena.getText().toString().trim();
         String nombre = edtNombre.getText().toString().trim();
         if(validarUsuarioContrasenaNombre(usuario,contrasena,nombre)){
-            String respuesta =new peticiones("http://www.ieslassalinas.org/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario().replaceAll("[^a-zA-Z0-9áéíóúüÁÉÍÓÚÜ]", "");
+            String respuesta =new peticiones("http://www.ieslassalinas.org/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
             if(respuesta.equals("0")){
                 Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
             }else {
-            cuentasSQLiteOpenHelper myDB = new cuentasSQLiteOpenHelper(AnadirCuentaActivity.this);
-            myDB.anadirCuenta(Integer.valueOf(usuario.replaceAll("[^0-9]","")),contrasena,nombre);
-            cancelarVolver(view);
+                cuentasSQLiteOpenHelper myDB = new cuentasSQLiteOpenHelper(AnadirCuentaActivity.this);
+                if(chBoxNombreDefecto.isChecked()==true){
+                    nombre=respuesta;
+                }
+                myDB.anadirCuenta(Integer.valueOf(usuario.replaceAll("[^0-9]","")),contrasena,nombre);
+                cancelarVolver(view);
             }
         }
 
@@ -57,7 +63,7 @@ public class AnadirCuentaActivity extends AppCompatActivity {
         }else if (contrasena.isEmpty()) {
             Toast.makeText(this, "El campo contraseña esta vacío", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (nombre.isEmpty()) {
+        } else if (nombre.isEmpty() && chBoxNombreDefecto.isChecked()==false){
             Toast.makeText(this, "El campo nombre esta vacío", Toast.LENGTH_SHORT).show();
             return false;
         } else if(!(usuario.matches(".*\\d.*"))){

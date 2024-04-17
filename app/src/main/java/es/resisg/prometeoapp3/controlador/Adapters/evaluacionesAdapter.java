@@ -1,16 +1,11 @@
 package es.resisg.prometeoapp3.controlador.Adapters;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -23,13 +18,13 @@ import es.resisg.prometeoapp3.clases.Evaluacion;
 public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapter.evaluacionesViewHolder>{
 
     //atributos
-    private List<Evaluacion> evaluacionArrayList;
-    private List<Asignatura> asignaturasDeEstaEvaluacionArrayList;
 
+    private EvaluacionInterface evaluacionSeleccionada;
+    private ArrayList<Evaluacion> evaluacionArrayList;
     //Constructor
-    public evaluacionesAdapter(List<Evaluacion> evaluacionArrayList) {
+    public evaluacionesAdapter(ArrayList<Evaluacion> evaluacionArrayList,EvaluacionInterface evaluacionSeleccionada) {
+        this.evaluacionSeleccionada= evaluacionSeleccionada;
         this.evaluacionArrayList = evaluacionArrayList;
-        this.asignaturasDeEstaEvaluacionArrayList = new ArrayList<>();
     }
 
     @NonNull
@@ -46,24 +41,6 @@ public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapte
     public void onBindViewHolder(@NonNull evaluacionesAdapter.evaluacionesViewHolder holder, int position) {
         Evaluacion evaluacion = evaluacionArrayList.get(position);
         holder.txtViewTituloEvaluacion.setText(evaluacion.getEvaluacion());
-
-        holder.layoutExpandibleEvaluacion.setVisibility(evaluacion.isExpandible() ? View.VISIBLE : View.GONE);
-        holder.imgBtnExpandirEvaluacion.setImageResource(evaluacion.isExpandible() ? R.drawable.ic_arrowup : R.drawable.ic_arrowdown);
-
-
-        AsignaturasAdapter asignaturasAdapter = new AsignaturasAdapter(asignaturasDeEstaEvaluacionArrayList);
-        holder.recyclerViewAsignaturas.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
-        holder.recyclerViewAsignaturas.setHasFixedSize(true);
-        holder.recyclerViewAsignaturas.setAdapter(asignaturasAdapter);
-        holder.linearLayoutEvaluacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                evaluacion.setExpandible(!evaluacion.isExpandible());
-                asignaturasDeEstaEvaluacionArrayList= evaluacion.getAsignaturas();
-                notifyItemChanged(holder.getBindingAdapterPosition());
-            }
-        });
     }
 
     @Override
@@ -72,22 +49,24 @@ public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapte
     }
 
     public class evaluacionesViewHolder extends RecyclerView.ViewHolder{
-
-        private LinearLayout linearLayoutEvaluacion;
         private TextView txtViewTituloEvaluacion;
-        private ImageView imgBtnExpandirEvaluacion;
-        private RelativeLayout layoutExpandibleEvaluacion;
-        private RecyclerView recyclerViewAsignaturas;
-
-
         public evaluacionesViewHolder(@NonNull View itemView) {
             super(itemView);
-            linearLayoutEvaluacion=itemView.findViewById(R.id.linearLayoutEvaluacionItemLayout);
             txtViewTituloEvaluacion=itemView.findViewById(R.id.txtViewTituloEvaluacion_evaluacionItemLayout);
-            imgBtnExpandirEvaluacion=itemView.findViewById(R.id.imgViewExpandirEvaluacionItemLayout);
-            layoutExpandibleEvaluacion=itemView.findViewById(R.id.layoutExpandibleEvaluacionItemLayout);
-            recyclerViewAsignaturas=itemView.findViewById(R.id.recyclerViewAsiganturaEvaluacionItemLayout);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ArrayList<Asignatura> asignaturas =evaluacionArrayList.get(getBindingAdapterPosition()).getAsignaturas();
+                    if(asignaturas.size()!=0){
+                        evaluacionSeleccionada.OnClickEvaluacion(asignaturas);
+                    }
+                }
+            });
         }
+    }
+
+    public interface EvaluacionInterface{
+        void OnClickEvaluacion(ArrayList<Asignatura> asignaturas);
     }
 }

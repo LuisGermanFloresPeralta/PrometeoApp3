@@ -34,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
         edtUsuario =(EditText) findViewById(R.id.edtUsuario_main_layout);
         edtContrasena =(EditText) findViewById(R.id.edtContrasena_main_layout);
         //validamos la sesion
-        if (gestionSesion.validarSesion()) {
+        String respuesta =new peticiones("http://192.168.1.33/WEB/APP/appValidaUsuario.php",String.valueOf(gestionSesion.getUsuario()),gestionSesion.getContrasena()).conseguirNombreUsuario();
+        if (gestionSesion.validarSesion()==true && respuesta!="0") {
             irActivityConectado();
+        }else {
+            Toast.makeText(this, "Se han cambiado las credenciales desde otro dispositivo", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         String contrasena=edtContrasena.getText().toString();
         //pasamos usuario,contrasena al metodo validarUsuarioContrasena
         if(validarUsuarioContrasena(usuario,contrasena)){
-            String respuesta =new peticiones("http://192.168.1.194/WEB/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario().replaceAll("[^a-zA-Z0-9áéíóúüÁÉÍÓÚÜ]", "");
+            String respuesta =new peticiones("http://192.168.1.33/WEB/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
             if(respuesta.equals("0")){
                 Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
                 borrarCampos();

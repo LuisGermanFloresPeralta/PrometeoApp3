@@ -19,8 +19,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="333dp"
-        android:layout_height="363dp"
+        android:layout_width="334dp"
+        android:layout_height="402dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="398dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -82,15 +82,23 @@
                 android:autofillHints=""
                 android:background="@drawable/border_radius"
                 android:ems="10"
-                android:hint="Nombre"
+                android:hint="@string/mainEdtNombre_string"
                 android:inputType="text"
                 android:paddingStart="15dp"
                 android:textColorHint="#757575"
                 tools:ignore="RtlSymmetry" />
 
+            <CheckBox
+                android:id="@+id/checkBoxAnadirCuenta"
+                android:layout_width="271dp"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/moradoOscuro"
+                android:text="@string/mainCheckBox_String"
+                app:checkedState="checked" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 

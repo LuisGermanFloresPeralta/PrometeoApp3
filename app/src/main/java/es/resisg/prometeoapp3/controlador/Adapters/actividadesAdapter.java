@@ -1,5 +1,9 @@
 package es.resisg.prometeoapp3.controlador.Adapters;
 
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +34,31 @@ public class actividadesAdapter extends RecyclerView.Adapter<actividadesAdapter.
     @Override
     public void onBindViewHolder(@NonNull actividadesAdapter.actividadesViewHolder holder, int position) {
         Actividad actividad = actividadesArraylList.get(position);
-        holder.txtViewActividad.setText("Actividad: "+actividad.getActividad());
-        holder.txtViewNombreProfesor.setText("Docente: "+actividad.getNombre_Profesor());
-        holder.txtViewFechaActividad.setText("Fecha "+actividad.getFecha());
-        holder.txtViewNotaActividad.setText("Nota: "+actividad.getNota());
+        holder.txtViewActividad.setText(actividad.getActividad()+":");
+        holder.txtViewNombreProfesorFecha.setText("("+actividad.getNombre_Profesor()+")"+actividad.getFecha());
+
+        String nota = actividad.getNota();
+        try {
+
+            double numero = Double.parseDouble(nota);
+            // Si es un número
+            if (numero > 5) {
+                // Si es mayor que 5, pinta el texto de verde
+                SpannableString spannableString = new SpannableString(nota);
+                ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.GREEN);
+                spannableString.setSpan(colorSpan, 0, nota.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.txtViewNotaActividad.setText(spannableString);
+            } else if (numero <= 5) {
+                // Si es menor o igual que 5, pinta el texto de rojo
+                SpannableString spannableString = new SpannableString(nota);
+                ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.RED);
+                spannableString.setSpan(colorSpan, 0, nota.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                holder.txtViewNotaActividad.setText(spannableString);
+            }
+        } catch (NumberFormatException e) {
+            // Si no se puede convertir a número, simplemente muestra el texto sin modificar
+            holder.txtViewNotaActividad.setText(nota);
+        }
     }
 
     @Override
@@ -42,13 +67,13 @@ public class actividadesAdapter extends RecyclerView.Adapter<actividadesAdapter.
     }
 
     public class actividadesViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtViewActividad,txtViewNombreProfesor,txtViewFechaActividad,txtViewNotaActividad;
+        private TextView txtViewActividad,txtViewNombreProfesorFecha,txtViewNotaActividad;
         public actividadesViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtViewActividad = itemView.findViewById(R.id.tituloActividad_ActividadItemLayout);
-            txtViewNombreProfesor = itemView.findViewById(R.id.nombreProfesor_ActividadItemLayout);
-            txtViewFechaActividad = itemView.findViewById(R.id.fechaActividad_ActividadItemLayout);
+            txtViewActividad = itemView.findViewById(R.id.Actividad_ActividadItemLayout);
+            txtViewNombreProfesorFecha = itemView.findViewById(R.id.nombreProfesorYFecha_ActividadItemLayout);
             txtViewNotaActividad = itemView.findViewById(R.id.notaActividad_ActividadItemLayout);
+
         }
     }
 }
