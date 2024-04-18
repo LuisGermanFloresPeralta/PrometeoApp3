@@ -44,12 +44,4 @@ public class DetallesItemEvaluacionesActivity extends AppCompatActivity {
         onBackPressed();
         finish();
     }
-
-    /*
-    * Intent i = new Intent(getActivity(), DetallesItemActuacionesActivity.class);
-        i.putExtra("Nombre_profesor",actuacionParticular.getNombre_profesor());
-        i.putExtra("Fecha",new SimpleDateFormat("dd/MM/yyyy\nHH:mm:ss").format(actuacionParticular.getFecha()));
-        i.putExtra("Tipo_actuacion",actuacionParticular.getTipo_actuacion());
-        i.putExtra("Comentario",actuacionParticular.getComentario());
-        startActivity(i);*/
 }

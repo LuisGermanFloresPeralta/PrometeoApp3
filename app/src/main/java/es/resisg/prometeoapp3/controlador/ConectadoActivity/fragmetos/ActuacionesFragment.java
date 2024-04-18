@@ -49,7 +49,7 @@ public class ActuacionesFragment extends Fragment implements actuacionesAdapter.
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirActuacionesParticulares pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        actuacionParticularArrayList = new peticiones("http://192.168.1.49/WEB/APP/appActuaciones.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirActuaciones();
+        actuacionParticularArrayList = new peticiones("http://ieslassalinas.org/APP/appActuaciones2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirActuaciones();
 
         //relacionamos el Recycler view con la parte gráfica de la aplicacion
         recyclerViewActuacionesParticulares = view.findViewById(R.id.recyclerViewActuacionesParticulares);

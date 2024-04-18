@@ -65,7 +65,7 @@ public class EditarCuentaActivity extends AppCompatActivity {
         //validamos los datos de sobre todo contrasena y usuario
         if(validarUsuarioContrasenaNombre(String.valueOf(usuario_EXTAR),contrasena,nombre)){
             //se comprueba que el usuario con esta nueva contraseña existe en la INTRANET de IES LAS SALINAS
-            String respuesta =new peticiones("http://192.168.1.49/WEB/APP/appValidaUsuario.php",String.valueOf(usuario_EXTAR),contrasena).conseguirNombreUsuario();
+            String respuesta =new peticiones("http://ieslassalinas.org/APP/appValidaUsuario.php",String.valueOf(usuario_EXTAR),contrasena).conseguirNombreUsuario();
             if(respuesta.equals("0")){
                 Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
             }else {

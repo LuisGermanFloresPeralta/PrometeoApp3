@@ -34,7 +34,7 @@ public class AnadirCuentaActivity extends AppCompatActivity {
         String contrasena = edtContrasena.getText().toString().trim();
         String nombre = edtNombre.getText().toString().trim();
         if(validarUsuarioContrasenaNombre(usuario,contrasena,nombre)){
-            String respuesta =new peticiones("http://192.168.1.49/WEB/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
+            String respuesta =new peticiones("http://ieslassalinas.org/APP/appValidaUsuario.php",usuario,contrasena).conseguirNombreUsuario();
             if(respuesta.equals("0")){
                 Toast.makeText(this, "Usuario no registrado, hable con secretaria", Toast.LENGTH_SHORT).show();
             }else {
