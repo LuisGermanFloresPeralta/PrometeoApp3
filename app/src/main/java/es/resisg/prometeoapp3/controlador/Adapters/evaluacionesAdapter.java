@@ -57,8 +57,9 @@ public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapte
                 @Override
                 public void onClick(View v) {
                     ArrayList<Asignatura> asignaturas =evaluacionArrayList.get(getBindingAdapterPosition()).getAsignaturas();
+                    String nombreEvaluacion = evaluacionArrayList.get(getBindingAdapterPosition()).getEvaluacion();
                     if(asignaturas.size()!=0){
-                        evaluacionSeleccionada.OnClickEvaluacion(asignaturas);
+                        evaluacionSeleccionada.OnClickEvaluacion(asignaturas,nombreEvaluacion);
                     }
                 }
             });
@@ -66,6 +67,6 @@ public class evaluacionesAdapter extends RecyclerView.Adapter<evaluacionesAdapte
     }
 
     public interface EvaluacionInterface{
-        void OnClickEvaluacion(ArrayList<Asignatura> asignaturas);
+        void OnClickEvaluacion(ArrayList<Asignatura> asignaturas, String nombreevaluacion);
     }
 }

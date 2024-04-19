@@ -3,6 +3,7 @@ package es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,7 +55,8 @@ public class FaltasFragment extends Fragment {
         // Configurar el RecyclerView
         rvFaltas.setAdapter(faltasAdapter);
         rvFaltas.setHasFixedSize(true);
-        rvFaltas.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvFaltas.setLayoutManager(new GridLayoutManager(getContext(),2));
+        //rvFaltas.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //-------------------------------------------------------------------------------
         //inicializo el SearchView y añadimos un onQueryTextChange para ejecutar esta accion por cada caracter pulsado

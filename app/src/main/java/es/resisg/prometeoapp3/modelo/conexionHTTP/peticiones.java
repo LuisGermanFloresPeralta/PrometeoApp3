@@ -57,7 +57,12 @@ public class peticiones {
             throw new RuntimeException(e);
         }
         //finalmente devolvemos el arrayList actuaciones
-        return actuaciones;
+        if(actuaciones.isEmpty()){
+            actuaciones.add(new ActuacionParticular("No tienes ninguna Actuacion"));
+            return actuaciones;
+        }else {
+            return actuaciones;
+        }
     }
     public ArrayList<Evaluacion> conseguirEvaluaciones () {
         ArrayList<Evaluacion> evaluaciones= new ArrayList<>();// Se inicializa un ArrayList para almacenar las evaluaciones obtenidas
@@ -151,7 +156,12 @@ public class peticiones {
         }
 
         //Devolvemos el ArrayList
-        return faltasArrayList;
+        if(faltasArrayList.isEmpty()){
+            faltasArrayList.add(new Falta("No tienes ninguna Falta"));
+            return faltasArrayList;
+        }else {
+            return faltasArrayList;
+        }
     }
 
 }

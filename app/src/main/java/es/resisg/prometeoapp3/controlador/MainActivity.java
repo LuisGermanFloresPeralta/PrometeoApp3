@@ -35,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
         edtContrasena =(EditText) findViewById(R.id.edtContrasena_main_layout);
         //validamos la sesion y que comprobar que no se ha cambiado la contrasena en otra plataforma.
         String respuesta =new peticiones("http://ieslassalinas.org/APP/appValidaUsuario.php",String.valueOf(gestionSesion.getUsuario()),gestionSesion.getContrasena()).conseguirNombreUsuario();
-        if (respuesta.equals("0")) {
-            Toast.makeText(this, "Se han cambiado las credenciales desde otro dispositivo", Toast.LENGTH_SHORT).show();
-        }else {
-            irActivityConectado();
+        if (gestionSesion.validarSesion()) {
+            if(respuesta.equals("0")){
+                Toast.makeText(this, "Se han cambiado las credenciales desde otro dispositivo", Toast.LENGTH_SHORT).show();
+            }else {
+                irActivityConectado();
+            }
         }
     }
 

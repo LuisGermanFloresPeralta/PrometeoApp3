@@ -10,6 +10,11 @@ public class Falta {
         Tipo_falta = tipo_falta;
         Hora_falta = hora_falta;
     }
+    public Falta(String NoTienesFaltas) {
+        Dia_semana_y_Fecha = NoTienesFaltas;
+        Tipo_falta = "";
+        Hora_falta = "";
+    }
 
     //Getters
     public String getDia_semana_y_Fecha() {

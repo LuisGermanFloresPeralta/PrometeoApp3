@@ -16,7 +16,11 @@ public class ActuacionParticular {
         Tipo_actuacion = tipo_actuacion;
         Comentario = comentario;
     }
-    public ActuacionParticular() {
+    public ActuacionParticular(String nombre_profesor) {
+        Nombre_profesor = nombre_profesor;
+        Fecha = new Date();
+        Tipo_actuacion = "";
+        Comentario = "";
     }
 
     //getters

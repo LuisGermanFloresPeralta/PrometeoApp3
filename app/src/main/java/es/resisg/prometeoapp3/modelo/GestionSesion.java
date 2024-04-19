@@ -44,8 +44,7 @@ public class GestionSesion {
     }
 
     public boolean validarSesion() {
-        return !(sharedPreferences.getInt(KEY_USUARIO, 0) ==0) &&
-                !sharedPreferences.getString(KEY_CONTRASENA, "").isEmpty();
+        return !(sharedPreferences.getInt(KEY_USUARIO, 0)==0) && !sharedPreferences.getString(KEY_CONTRASENA, "").isEmpty();
     }
 
     public void cerrarSesion() {

@@ -42,13 +42,13 @@ public class actividadesAdapter extends RecyclerView.Adapter<actividadesAdapter.
 
             double numero = Double.parseDouble(nota);
             // Si es un número
-            if (numero > 5) {
+            if (numero >= 5) {
                 // Si es mayor que 5, pinta el texto de verde
                 SpannableString spannableString = new SpannableString(nota);
                 ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.GREEN);
                 spannableString.setSpan(colorSpan, 0, nota.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 holder.txtViewNotaActividad.setText(spannableString);
-            } else if (numero <= 5) {
+            } else if (numero < 5) {
                 // Si es menor o igual que 5, pinta el texto de rojo
                 SpannableString spannableString = new SpannableString(nota);
                 ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.RED);

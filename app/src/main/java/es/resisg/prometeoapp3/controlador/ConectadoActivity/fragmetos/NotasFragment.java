@@ -59,10 +59,11 @@ public class NotasFragment extends Fragment implements evaluacionesAdapter.Evalu
     }
 
     @Override
-    public void OnClickEvaluacion(ArrayList<Asignatura> asignaturas) {
+    public void OnClickEvaluacion(ArrayList<Asignatura> asignaturas,String nombreEvaluacion) {
 
         Intent i = new Intent(getActivity(), DetallesItemEvaluacionesActivity.class);
         i.putExtra("Asignaturas", asignaturas);
+        i.putExtra("Evaluacion", nombreEvaluacion);
         startActivity(i);
 
     }

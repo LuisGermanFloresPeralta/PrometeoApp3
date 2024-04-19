@@ -71,14 +71,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="56dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="start|right|end"
                     android:orientation="vertical"
                     android:paddingStart="20dp"
@@ -101,7 +100,7 @@
                 <TextView
                     android:id="@+id/txtViewNombreProfesorDetallesItem"
                     android:layout_width="192dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:paddingStart="4dp"
                     android:text="@string/txtViewNombreProfesorDetallesItem_string"
@@ -112,9 +111,8 @@
 
                 <TextView
                     android:id="@+id/txtViewFechaDetallesItem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="right|center_vertical"
                     android:paddingRight="20dp"
                     android:text="@string/txtViewFechaDetallesItem_string"
