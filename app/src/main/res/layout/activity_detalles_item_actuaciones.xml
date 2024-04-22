@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blancoHueso"
     android:clipToPadding="false"
     tools:context=".controlador.DetallesItemActuacionesActivity">
 
@@ -29,17 +30,6 @@
             app:iconTint="@color/moradoOscuro"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <TextView
-            android:id="@+id/txtViewtituloDetallesItem"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="@string/txtViewTituloDetallesItem_string"
-            android:textColor="@color/azulCianOscuro"
-            android:textSize="20sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <ScrollView
@@ -54,7 +44,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/azulCianClaro"
             android:orientation="vertical">
 
             <TextView
@@ -65,13 +54,14 @@
                 android:layout_marginRight="20dp"
                 android:gravity="bottom|center_horizontal"
                 android:text="@string/txtViewTipoActuacionDetallesItem_string"
-                android:textColor="@color/moradoNormal"
+                android:textColor="@color/azulCianOscuro"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -88,7 +78,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="@drawable/fondo_circular"
+                        android:background="@drawable/fondo_circular2"
                         android:gravity="center"
                         android:text="@string/txtViewLogoInicialDetallesItem_string"
                         android:textAllCaps="true"
@@ -99,12 +89,12 @@
 
                 <TextView
                     android:id="@+id/txtViewNombreProfesorDetallesItem"
-                    android:layout_width="192dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:paddingStart="4dp"
+                    android:maxWidth="200dp"
                     android:text="@string/txtViewNombreProfesorDetallesItem_string"
-                    android:textColor="@color/azulCianOscuro"
+                    android:textColor="@color/moradoNormal"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     tools:ignore="RtlSymmetry" />
@@ -113,11 +103,11 @@
                     android:id="@+id/txtViewFechaDetallesItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right|center_vertical"
-                    android:paddingRight="20dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingLeft="5dp"
                     android:text="@string/txtViewFechaDetallesItem_string"
-                    android:textColor="@color/azulCianOscuro"
-                    android:textSize="15sp"
+                    android:textColor="@color/moradoOscuro"
+                    android:textSize="14sp"
                     android:textStyle="normal|bold"
                     tools:ignore="RtlHardcoded,RtlSymmetry" />
 
@@ -128,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/txtViewDetallesItem1_string"
@@ -141,15 +132,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="18dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/fondo_texto"
-                android:elevation="4dp"
                 android:paddingLeft="18dp"
-                android:paddingTop="5dp"
+                android:paddingTop="18dp"
                 android:paddingRight="18dp"
+                android:paddingBottom="18dp"
                 android:text="@string/txtViewComentarioDetallesItem_string"
                 tools:ignore="VisualLintLongText" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
+                android:text=" © 2024  IES LAS SALINAS,  Seseña nuevo.\n\n le enviamos este mensaje para comunicarle el progreso del alumno en el centro escolar, de parte de Ies las salinas, muchas gracias." />
         </LinearLayout>
     </ScrollView>
 

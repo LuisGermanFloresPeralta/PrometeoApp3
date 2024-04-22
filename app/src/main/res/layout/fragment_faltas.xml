@@ -1,34 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controlador.ConectadoActivity.fragmetos.FaltasFragment" >
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        android:background="@color/moradoOscuro">
 
-        <SearchView
-            android:id="@+id/shViewFaltasFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="65dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/fondo_search_view"
-            android:queryHint="Fecha"
-            android:searchHintIcon="@drawable/ic_buscar"
-            android:searchIcon="@drawable/ic_buscar">
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_usuario_blanco"
+            android:contentDescription="@string/mainImageView_Description"
+            android:onClick="irACuentas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
 
-        </SearchView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewFaltas"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UselessParent">
+
+            <SearchView
+                android:id="@+id/shViewFaltasFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="65dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/fondo_search_view"
+                android:queryHint="Fecha"
+                android:searchHintIcon="@drawable/ic_buscar"
+                android:searchIcon="@drawable/ic_buscar">
+
+            </SearchView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewFaltas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/fondo_rv_actuaciones"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

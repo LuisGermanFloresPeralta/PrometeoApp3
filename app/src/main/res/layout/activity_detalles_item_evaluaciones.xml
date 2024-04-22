@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/moradoOscuro"
     tools:context=".controlador.DetallesItemEvaluacionesActivity">
 
     <LinearLayout
@@ -27,7 +28,7 @@
                 android:onClick="volverAEvaluacines"
                 app:icon="@drawable/ic_volver"
                 app:iconSize="28dp"
-                app:iconTint="@color/moradoOscuro"
+                app:iconTint="@color/blancoHueso"
                 tools:ignore="SpeakableTextPresentCheck,VisualLintButtonSize" />
 
             <TextView
@@ -37,7 +38,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/asignaturas"
-                android:textColor="@color/azulCianOscuro"
+                android:textColor="@color/blancoHueso"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -45,6 +46,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewAsignaturasDetallesEvaluaciones"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/fondo_rv_actuaciones"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

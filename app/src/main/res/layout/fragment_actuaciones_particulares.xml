@@ -1,33 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controlador.ConectadoActivity.fragmetos.ActuacionesFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        android:layout_height="match_parent">
 
-        <SearchView
-            android:id="@+id/shViewActuacionesFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="65dp"
-            android:background="@drawable/fondo_search_view"
-            android:queryHint="Fecha o NombreProfesor"
-            android:searchHintIcon="@drawable/ic_buscar"
-            android:searchIcon="@drawable/ic_buscar" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewActuacionesParticulares"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp" />
-    </LinearLayout>
+            android:background="@color/moradoOscuro"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UselessParent">
+
+            <SearchView
+                android:id="@+id/shViewActuacionesFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="65dp"
+                android:background="@drawable/fondo_search_view"
+                android:queryHint="Fecha o NombreProfesor"
+                android:searchHintIcon="@drawable/ic_buscar"
+                android:searchIcon="@drawable/ic_buscar">
+
+            </SearchView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewActuacionesParticulares"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/fondo_rv_actuaciones"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_usuario_blanco"
+            android:contentDescription="@string/mainImageView_Description"
+            android:onClick="irACuentas"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

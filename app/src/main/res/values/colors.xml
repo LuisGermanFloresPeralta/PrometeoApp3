@@ -6,7 +6,9 @@
     <color name="transparente">#00000000</color>
     <color name="moradoOscuro">#2496ca</color>
     <color name="moradoNormal">#2496ca</color>
+    <color name="azulMasClaro">#C1EBFD</color>
     <color name="azulCianOscuro">#0d3d86</color>
+    <color name="azulCianOscuroClaro">#1A6D93</color>
     <color name="blancoHueso">#fafafa</color>
     <color name="azulCianClaro">#e0f3ff</color>
 
