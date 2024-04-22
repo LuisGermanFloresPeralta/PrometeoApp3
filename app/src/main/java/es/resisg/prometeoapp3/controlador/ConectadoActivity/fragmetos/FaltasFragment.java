@@ -55,7 +55,7 @@ public class FaltasFragment extends Fragment {
         // Configurar el RecyclerView
         rvFaltas.setAdapter(faltasAdapter);
         rvFaltas.setHasFixedSize(true);
-        rvFaltas.setLayoutManager(new GridLayoutManager(getContext(),2));
+        rvFaltas.setLayoutManager(new GridLayoutManager(getContext(),1));
         //rvFaltas.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //-------------------------------------------------------------------------------

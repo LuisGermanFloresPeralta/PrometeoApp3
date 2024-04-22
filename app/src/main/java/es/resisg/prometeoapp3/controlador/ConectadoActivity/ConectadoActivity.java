@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.CuentasActivity.CuentasActivity;
@@ -44,6 +46,7 @@ public class ConectadoActivity extends AppCompatActivity {
 
             return false;
         });
+
     }
     // este metodo se encarga de cambiar o cargar el fragmento, tambien pasamos el usuario y comtrasena
     private void loadFragment(Fragment fragment){

@@ -150,6 +150,11 @@
     </string>
     <string name="asignaturas">Asignaturas</string>
     <string name="textview">TextView</string>
+    <string name="editar">Editar</string>
+    <string name="cuentas_ies_las_salinas">Cuentas IES LAS SALINAS</string>
+    <string name="usuarios">Usuarios:</string>
+    <string name="cerrar_sesion">Cerrar sesion</string>
+    <string name="luis_german">LUIS GERMAN</string>
 
 
 </resources>

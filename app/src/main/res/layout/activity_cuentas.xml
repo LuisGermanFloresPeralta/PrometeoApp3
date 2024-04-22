@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/moradoOscuro"
     tools:context=".controlador.CuentasActivity.CuentasActivity">
 
     <LinearLayout
@@ -21,6 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
@@ -33,16 +35,17 @@
                 app:icon="@drawable/ic_volver"
                 app:iconGravity="textStart"
                 app:iconSize="28dp"
-                app:iconTint="@color/moradoNormal"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:iconTint="@color/blancoHueso"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintBounds" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
-                android:text="Cuentas IES LAS SALINAS"
+                android:text="@string/cuentas_ies_las_salinas"
+                android:textColor="@color/blancoHueso"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -55,7 +58,7 @@
             android:gravity="center"
             android:text="@string/txtViewLogoInicialDetallesItem_string"
             android:textAllCaps="true"
-            android:textColor="@color/blancoHueso"
+            android:textColor="@color/moradoNormal"
             android:textSize="48sp"
             android:textStyle="bold" />
 
@@ -64,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center"
-            android:text="LUIS GERMAN"
+            android:text="@string/luis_german"
+            android:textColor="@color/blancoHueso"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -77,9 +81,10 @@
                 android:id="@+id/button2"
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/moradoNormal"
+                android:backgroundTint="@color/blancoHueso"
                 android:onClick="irEditar"
-                android:text="Editar" />
+                android:text="@string/editar"
+                android:textColor="@color/moradoOscuro" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -90,9 +95,10 @@
                 android:id="@+id/button"
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
-                android:backgroundTint="@color/moradoNormal"
+                android:backgroundTint="@color/blancoHueso"
                 android:onClick="CerrarSesion"
-                android:text="Cerrar sesion" />
+                android:text="@string/cerrar_sesion"
+                android:textColor="@color/moradoOscuro" />
 
         </LinearLayout>
 
@@ -100,22 +106,26 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:text="Usuarios:"
-            android:textSize="24sp" />
+            android:paddingStart="30dp"
+            android:text="@string/usuarios"
+            android:textColor="@color/blancoHueso"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvActivityCuentas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/transparente"
-            android:onClick="irEditarCrearCuenta" />
+            android:background="@drawable/fondo_rv_cuentas"
+            android:onClick="irEditarCrearCuenta"
+            android:paddingTop="10dp" />
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/imgbVolverActivityCuentas"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="18dp"
         android:background="@drawable/ic_addusuario"

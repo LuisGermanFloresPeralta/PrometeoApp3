@@ -2,12 +2,15 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.PrometeoApp3" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Cambiar el color de la barra de estado -->
-        <item name="android:statusBarColor">@color/azulCianClaro</item>
+        <item name="android:statusBarColor">@color/moradoOscuro</item>
         <!-- Cambiar el color de los iconos en la barra de estado -->
         <item name="android:windowLightStatusBar">true</item>
         <!-- Cambiar el color de fondo de la aplicación -->
-        <item name="android:windowBackground">@color/azulCianClaro</item>
+        <item name="android:windowBackground">@color/moradoOscuro</item>
     </style>
 
     <style name="Theme.PrometeoApp3" parent="Base.Theme.PrometeoApp3" />
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/azulCianOscuroClaro</item>
+    </style>
 </resources>

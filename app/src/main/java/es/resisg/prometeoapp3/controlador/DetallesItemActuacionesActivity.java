@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import es.resisg.prometeoapp3.R;
@@ -34,6 +36,11 @@ public class DetallesItemActuacionesActivity extends AppCompatActivity {
         txtViewLogoInicial=(TextView) findViewById(R.id.txtViewLogoInicialDetallesItem);
         settearTextos();
 
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor(R.color.blancoHueso)); // Reemplaza R.color.colorPrimaryDark con el color que desees
+
     }
     //metado para boton back
     public void volverAtras(View view) {
@@ -51,7 +58,7 @@ public class DetallesItemActuacionesActivity extends AppCompatActivity {
     }
     //conseguir inicial del nombre
     private String obtenerInicial(String nombre_profesor) {
-        String inicial=String.valueOf(nombre_profesor.charAt(1));
+        String inicial=String.valueOf(nombre_profesor.charAt(0));
         return inicial;
     }
 }

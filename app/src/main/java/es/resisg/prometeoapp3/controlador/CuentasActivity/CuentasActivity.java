@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -54,6 +56,8 @@ public class CuentasActivity extends AppCompatActivity implements cuentasInterfa
         cuentasActivityAdapter = new CuentasActivityAdapter(this,cuentaArrayList);
         rcvCuentas.setAdapter(cuentasActivityAdapter);
         rcvCuentas.setLayoutManager(new LinearLayoutManager(this));
+
+         // Reemplaza R.color.colorPrimaryDark con el color que desees
     }
 
     @Override
