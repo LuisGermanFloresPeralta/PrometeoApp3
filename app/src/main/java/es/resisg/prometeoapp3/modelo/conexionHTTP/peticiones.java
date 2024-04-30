@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import es.resisg.prometeoapp3.modelo.clases.Actividad;
@@ -128,6 +129,27 @@ public class peticiones {
         }
 
         return respuesta;
+    }
+
+    public List<String> conseguirNotificaciones(){
+        List<String> notificaciones = new ArrayList<>();
+        try {
+            String respuesta = new conexionHTTP().execute(url,usuario,contrasena).get().trim();
+            JSONArray jsonArrayNotificaciones = new JSONArray(respuesta);
+
+            for (int i=0;i<jsonArrayNotificaciones.length();i++){
+                String notificacion = jsonArrayNotificaciones.getString(i);
+                notificaciones.add(notificacion);
+            }
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        return notificaciones;
     }
 
     public ArrayList<Falta> conseguirFaltas(){

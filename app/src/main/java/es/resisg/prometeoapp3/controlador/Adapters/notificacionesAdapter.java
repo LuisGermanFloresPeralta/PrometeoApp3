@@ -9,17 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import es.resisg.prometeoapp3.R;
 
 public class notificacionesAdapter extends RecyclerView.Adapter<notificacionesAdapter.notificacionesViewHolder> {
 
     //Atributos de la calse
-    private ArrayList<String> notificacionesStringArrayList;
+    private List<String> notificacionesStringList;
 
     //constructor
-    public notificacionesAdapter(ArrayList<String> notificacionesStringArrayList) {
-        this.notificacionesStringArrayList = notificacionesStringArrayList;
+
+    public notificacionesAdapter(List<String> notificacionesStringList) {
+        this.notificacionesStringList = notificacionesStringList;
     }
 
     @NonNull
@@ -31,13 +33,13 @@ public class notificacionesAdapter extends RecyclerView.Adapter<notificacionesAd
 
     @Override
     public void onBindViewHolder(@NonNull notificacionesAdapter.notificacionesViewHolder holder, int position) {
-        String notificacion = notificacionesStringArrayList.get(position);
+        String notificacion = notificacionesStringList.get(position);
         holder.txtViewTextoNotificacacion.setText(notificacion);
     }
 
     @Override
     public int getItemCount() {
-        return notificacionesStringArrayList.size();
+        return notificacionesStringList.size();
     }
 
     public class notificacionesViewHolder extends RecyclerView.ViewHolder{

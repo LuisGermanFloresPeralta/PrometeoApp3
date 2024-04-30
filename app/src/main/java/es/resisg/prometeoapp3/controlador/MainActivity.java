@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
+import es.resisg.prometeoapp3.modelo.ServicioManager;
 import es.resisg.prometeoapp3.modelo.clases.Cuenta;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
 import es.resisg.prometeoapp3.modelo.GestionSesion;
@@ -93,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
     
 
     public void irActivityConectado(){
+        //con el servicio manager activamos el servicio de notificaciones
+        ServicioManager.getInstance(getApplicationContext()).iniciarServicio();
+
         Intent i = new Intent(MainActivity.this, ConectadoActivity.class);
         finish();
         startActivity(i);

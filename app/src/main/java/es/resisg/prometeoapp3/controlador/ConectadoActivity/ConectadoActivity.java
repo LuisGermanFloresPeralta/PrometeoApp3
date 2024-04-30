@@ -1,40 +1,49 @@
 package es.resisg.prometeoapp3.controlador.ConectadoActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import es.resisg.prometeoapp3.R;
+import es.resisg.prometeoapp3.controlador.Adapters.notificacionesAdapter;
 import es.resisg.prometeoapp3.controlador.CuentasActivity.CuentasActivity;
 import es.resisg.prometeoapp3.databinding.ActivityConectadoBinding;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.ActuacionesFragment;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.FaltasFragment;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.NotasFragment;
+import es.resisg.prometeoapp3.modelo.GestionSesion;
 import es.resisg.prometeoapp3.modelo.ServicioManager;
+import es.resisg.prometeoapp3.modelo.conexionHTTP.peticiones;
 
 public class ConectadoActivity extends AppCompatActivity {
 
 
     ActivityConectadoBinding binding;
-    private static final String CHANNEL_ID = "myCanal";
+    private RecyclerView recyclerViewNotificaciones;
+    private notificacionesAdapter notificacionesAdapter;
+    private GestionSesion gestionSesion;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityConectadoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //Recuperamos datos de la sesion(usuario y contraseña)
+        gestionSesion = new GestionSesion(ConectadoActivity.this);
 
         //primero cargamos el primer fragmento por defecto
         loadFragment(new ActuacionesFragment());
@@ -75,15 +84,33 @@ public class ConectadoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        //con el servicio manager activamos el servicio
-        ServicioManager.getInstance(getApplicationContext()).iniciarServicio();
-    }
-
-    @Override
     protected void onStart() {
         super.onStart();
+        //instanciamos la lista de notificaciones que existe
+        List<String> notificacionesList = new ArrayList<>();
 
+        //revisamos si disponemos de alguna notificacion
+        notificacionesList = new peticiones("http://192.168.1.141/WEB/APP/appNotificaciones.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirNotificaciones();
+
+        if(notificacionesList.size()!=0){
+            showDialog(notificacionesList);
+        }
+    }
+
+    private void showDialog(List<String> notificacionesList) {
+
+        //Relacionamos el recycler view con la parte gráfica de la aplicacion
+        AlertDialog.Builder builder = new AlertDialog.Builder(ConectadoActivity.this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_notification_layout, null);
+        builder.setView(dialogView);
+
+        recyclerViewNotificaciones = dialogView.findViewById(R.id.recyclerViewNuevasNotificaciones);
+        notificacionesAdapter = new notificacionesAdapter(notificacionesList);
+        recyclerViewNotificaciones.setAdapter(notificacionesAdapter);
+        recyclerViewNotificaciones.setLayoutManager(new LinearLayoutManager(ConectadoActivity.this));
+
+        Dialog dialog = builder.create();
+        dialog.show();
     }
 }
