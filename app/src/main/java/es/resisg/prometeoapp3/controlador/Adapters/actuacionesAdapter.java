@@ -69,7 +69,7 @@ public class actuacionesAdapter extends RecyclerView.Adapter<actuacionesAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    actuacionSeleccionada.OnClickActuacion(actuacionParticularArrayList.get(getBindingAdapterPosition()));                }
+                    actuacionSeleccionada.OnClickActuacion(actuacionParticularArrayList.get(getBindingAdapterPosition()));    }
             });
         }
     }
