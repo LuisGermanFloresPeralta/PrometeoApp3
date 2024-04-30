@@ -136,6 +136,7 @@
                 android:layout_marginRight="18dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/fondo_texto"
+                android:minHeight="450dp"
                 android:paddingLeft="18dp"
                 android:paddingTop="18dp"
                 android:paddingRight="18dp"

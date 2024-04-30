@@ -1,7 +1,8 @@
-package es.resisg.prometeoapp3.modelo.servicioNotificaciones;
+package es.resisg.prometeoapp3.modelo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class ServicioManager {
     private static ServicioManager instance;
@@ -18,16 +19,15 @@ public class ServicioManager {
         return instance;
     }
 
-    // Métodos adicionales de gestión del servicio aquí
-
     public void iniciarServicio() {
-        Intent servicioIntent = new Intent(context, Servicio.class);
+        Intent servicioIntent = new Intent(context, MiServicio.class);
+        Toast.makeText(context, "Servicio iniciado", Toast.LENGTH_SHORT).show();
         context.startService(servicioIntent);
     }
 
     public void detenerServicio() {
-        Intent servicioIntent = new Intent(context, Servicio.class);
+        Intent servicioIntent = new Intent(context, MiServicio.class);
+        Toast.makeText(context, "Servicio detenido", Toast.LENGTH_SHORT).show();
         context.stopService(servicioIntent);
     }
 }
-

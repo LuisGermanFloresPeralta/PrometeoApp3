@@ -1,14 +1,20 @@
 package es.resisg.prometeoapp3.controlador.ConectadoActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import es.resisg.prometeoapp3.R;
 import es.resisg.prometeoapp3.controlador.CuentasActivity.CuentasActivity;
@@ -16,15 +22,19 @@ import es.resisg.prometeoapp3.databinding.ActivityConectadoBinding;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.ActuacionesFragment;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.FaltasFragment;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.fragmetos.NotasFragment;
+import es.resisg.prometeoapp3.modelo.ServicioManager;
 
 public class ConectadoActivity extends AppCompatActivity {
 
 
     ActivityConectadoBinding binding;
+    private static final String CHANNEL_ID = "myCanal";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityConectadoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         //primero cargamos el primer fragmento por defecto
         loadFragment(new ActuacionesFragment());
@@ -33,13 +43,13 @@ public class ConectadoActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
 
             int itemId = item.getItemId();
-            if(itemId== R.id.itemActuacionesBottonNavigation){
+            if (itemId == R.id.itemActuacionesBottonNavigation) {
                 loadFragment(new ActuacionesFragment());
                 return true;
-            }else if(itemId==R.id.itemNotasBottonNavigation){
+            } else if (itemId == R.id.itemNotasBottonNavigation) {
                 loadFragment(new NotasFragment());
                 return true;
-            } else if (itemId==R.id.itemFaltasBottonNavigation) {
+            } else if (itemId == R.id.itemFaltasBottonNavigation) {
                 loadFragment(new FaltasFragment());
                 return true;
             }
@@ -48,22 +58,32 @@ public class ConectadoActivity extends AppCompatActivity {
         });
 
     }
+
     // este metodo se encarga de cambiar o cargar el fragmento, tambien pasamos el usuario y comtrasena
-    private void loadFragment(Fragment fragment){
-        FragmentManager fragmentManager= getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout,fragment);
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
     }
+
     //accion para abrir activityCuentas
-    public void irACuentas(View view){
+    public void irACuentas(View view) {
         Intent i = new Intent(this, CuentasActivity.class);
         finish();
         startActivity(i);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
+        //con el servicio manager activamos el servicio
+        ServicioManager.getInstance(getApplicationContext()).iniciarServicio();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }

@@ -27,7 +27,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="410dp"
-            android:layout_height="61dp"
+            android:layout_height="68dp"
             android:gravity="center"
             android:text="Evaluaciones"
             android:textColor="@color/blancoHueso"
@@ -42,6 +42,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/fondo_rv_actuaciones"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

@@ -22,20 +22,19 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
-        android:layout_height="67dp"
+        android:layout_height="64dp"
         android:background="@color/moradoOscuro"
         android:scrollbarThumbHorizontal="@color/azulCianClaro"
         android:scrollbarThumbVertical="@color/azulCianClaro"
         android:scrollbarTrackHorizontal="@color/azulCianClaro"
         android:scrollbarTrackVertical="@color/azulCianClaro"
-        app:compatShadowEnabled="true"
+        app:compatShadowEnabled="false"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:itemIconTint="@color/azulCianClaro"
         app:itemTextColor="@color/azulCianClaro"
         app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/configuracion_botton_navigation" />
 
