@@ -1,16 +1,29 @@
 package es.resisg.prometeoapp3.controlador;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import es.resisg.prometeoapp3.R;
+import es.resisg.prometeoapp3.controlador.Adapters.notificacionesAdapter;
 import es.resisg.prometeoapp3.modelo.ServicioManager;
 import es.resisg.prometeoapp3.modelo.clases.Cuenta;
 import es.resisg.prometeoapp3.controlador.ConectadoActivity.ConectadoActivity;
@@ -22,11 +35,15 @@ public class MainActivity extends AppCompatActivity {
     //Atributos
     EditText edtUsuario,edtContrasena;
     private GestionSesion gestionSesion;
+    SharedPreferences notificacionSegundoPlano;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        permisoNotificaccion();
     }
     public void init(){
         //inicializamos el SharedPreferences
@@ -116,13 +133,64 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
             }
-
             if (!cuentaExistente) {
                 myDB.anadirCuenta(usuario, contrasena, nombre);
             }
         } else {
             myDB.anadirCuenta(usuario, contrasena, nombre);
             irActivityConectado();
+        }
+
+    }
+
+    public void permisoNotificaccion (){
+
+        notificacionSegundoPlano= getSharedPreferences("notificacionYactividadSengundoPlano", this.MODE_PRIVATE);
+
+        boolean Accede = notificacionSegundoPlano.getBoolean("accedeAirAPermisos", false); // false es el valor por defecto si la clave no existe
+
+        if(Accede==false){
+            //Relacionamos el recycler view con la parte gráfica de la aplicacion
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            LayoutInflater inflater = getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.dialog_permitir_notificaciones, null);
+            builder.setView(dialogView);
+
+            Dialog dialog = builder.create();
+            //aplicar fondo al Dialog
+            dialog.getWindow().setBackgroundDrawableResource(R.drawable.fondo_rv_actuaciones);
+
+            //configuracion de boton cancelar del dialogo
+            dialogView.findViewById(R.id.btnCancelar_dialog_permitir_notificaciones).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Cerrar el diálogo
+                    dialog.dismiss();
+                }
+            });
+
+            //configuracion del boton ir a permisos del boton Ir a permisos
+            dialogView.findViewById(R.id.btnIrPermisos_dialog_permitir_notificaciones).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //-------------------------------------------------------------------
+                    //guardamos que si se ha accedido a Permisos de las aplicaciones
+                    SharedPreferences.Editor editor = notificacionSegundoPlano.edit();// Utiliza SharedPreferences.Editor para editar los valores
+                    // Guarda el valor booleano
+                    boolean valorBooleano = true; // por ejemplo, tu valor booleano
+                    editor.putBoolean("accedeAirAPermisos", valorBooleano);
+                    editor.apply();// Aplica los cambios
+
+                    //-------------Vamos a la gestion de permisos----------------
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_SETTINGS);
+                    intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+                    startActivity(intent);
+                }
+            });
+
+            // finalmente mostrar el dialogo
+            dialog.show();
         }
 
     }

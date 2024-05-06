@@ -21,13 +21,6 @@ public class ServicioManager {
 
     public void iniciarServicio() {
         Intent servicioIntent = new Intent(context, MiServicio.class);
-        Toast.makeText(context, "Servicio iniciado", Toast.LENGTH_SHORT).show();
         context.startService(servicioIntent);
-    }
-
-    public void detenerServicio() {
-        Intent servicioIntent = new Intent(context, MiServicio.class);
-        Toast.makeText(context, "Servicio detenido", Toast.LENGTH_SHORT).show();
-        context.stopService(servicioIntent);
     }
 }

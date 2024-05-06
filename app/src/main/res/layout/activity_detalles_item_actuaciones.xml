@@ -127,22 +127,28 @@
                 android:textStyle="bold"
                 tools:ignore="TextSizeCheck" />
 
-            <TextView
-                android:id="@+id/txtViewComentarioDetallesItem"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="18dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/fondo_texto"
-                android:minHeight="450dp"
-                android:paddingLeft="18dp"
-                android:paddingTop="18dp"
-                android:paddingRight="18dp"
-                android:paddingBottom="18dp"
-                android:text="@string/txtViewComentarioDetallesItem_string"
-                tools:ignore="VisualLintLongText" />
+                android:layout_height="wrap_content"
+                android:minHeight="400dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtViewComentarioDetallesItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="18dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/fondo_texto"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="18dp"
+                    android:paddingRight="18dp"
+                    android:paddingBottom="18dp"
+                    android:text="@string/txtViewComentarioDetallesItem_string"
+                    tools:ignore="VisualLintLongText" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

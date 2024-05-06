@@ -45,6 +45,7 @@ public class ConectadoActivity extends AppCompatActivity {
         //Recuperamos datos de la sesion(usuario y contraseña)
         gestionSesion = new GestionSesion(ConectadoActivity.this);
 
+        configurarDialog();
         //primero cargamos el primer fragmento por defecto
         loadFragment(new ActuacionesFragment());
 
@@ -86,6 +87,10 @@ public class ConectadoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        configurarDialog();
+    }
+
+    public void configurarDialog(){
         //instanciamos la lista de notificaciones que existe
         List<String> notificacionesList = new ArrayList<>();
 
@@ -97,6 +102,8 @@ public class ConectadoActivity extends AppCompatActivity {
         }
     }
 
+
+
     private void showDialog(List<String> notificacionesList) {
 
         //Relacionamos el recycler view con la parte gráfica de la aplicacion
@@ -105,12 +112,25 @@ public class ConectadoActivity extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.dialog_notification_layout, null);
         builder.setView(dialogView);
 
+
         recyclerViewNotificaciones = dialogView.findViewById(R.id.recyclerViewNuevasNotificaciones);
         notificacionesAdapter = new notificacionesAdapter(notificacionesList);
         recyclerViewNotificaciones.setAdapter(notificacionesAdapter);
         recyclerViewNotificaciones.setLayoutManager(new LinearLayoutManager(ConectadoActivity.this));
 
         Dialog dialog = builder.create();
+        //aplicar fondo al Dialog
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.fondo_rv_actuaciones);
+
+        //configuracion de boton cancelar del dialogo
+        dialogView.findViewById(R.id.imgViewCerrarDialog_notification_dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cerrar el diálogo
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 }
