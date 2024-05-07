@@ -40,7 +40,7 @@ public class MiServicio extends Service {
                 gestionSesion = new GestionSesion(MiServicio.this);
 
                 //Hacemos la peticion para recoger la cantidad de notificaciones que existen
-                List<String> notificacionesList = new peticiones("http://192.168.1.141/WEB/APP/appNotificaciones.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirNotificaciones();
+                List<String> notificacionesList = new peticiones("http://ieslassalinas.org/APP/appRevisaDatos2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena(),MiServicio.this).conseguirNotificaciones();
                 for (int i =0;i<notificacionesList.size();i++){
                     if(notificacionesList.size()>NumeroNotificacionesAnteriores && i>NumeroNotificacionesAnteriores){
                         createNotificationChannel();
@@ -51,6 +51,8 @@ public class MiServicio extends Service {
                 //añadimos la cantidad de notificaciones que existen en este momento
                 if(!notificacionesList.isEmpty()){
                     NumeroNotificacionesAnteriores=notificacionesList.size();
+                }else{
+                    NumeroNotificacionesAnteriores=-1;
                 }
 
                 handler.postDelayed(this,60000);
@@ -82,8 +84,8 @@ public class MiServicio extends Service {
     private void showNotification(String notificacion, int i) {
         // Crear un Intent para abrir la actividad principal de tu aplicación
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_usuario_morado)
-                .setContentTitle(gestionSesion.getNombre()+" tiene nueva acticvidad")
+                .setSmallIcon(R.drawable.ic_prometeo_logo)
+                .setContentTitle(gestionSesion.getNombre()+" nueva acticvidad")
                 .setContentText("Ver detalles")
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(notificacion))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

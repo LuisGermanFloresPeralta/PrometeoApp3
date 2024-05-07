@@ -1,6 +1,10 @@
 package es.resisg.prometeoapp3.modelo.conexionHTTP;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,8 +17,20 @@ import java.net.URL;
 
 public class conexionHTTP extends AsyncTask<String,String,String> {
 
+    private Context context;
+
+    public conexionHTTP(Context context) {
+        this.context = context;
+    }
+
     @Override
     protected String doInBackground(String... strings) {
+
+        // Verificar la conexión a Internet antes de continuar
+        if (!isInternetAvailable()) {
+            Toast.makeText(context, "No tienes conexion a internet", Toast.LENGTH_SHORT).show();
+            return null; // No hay conexión a Internet, retorna null
+        }
 
         //se recogen las variables pasadas como argumentos
         String URL = strings[0];
@@ -70,5 +86,13 @@ public class conexionHTTP extends AsyncTask<String,String,String> {
         result =result.replaceAll(pattern3, "");
 
         return result;
+    }
+    private boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
     }
 }

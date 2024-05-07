@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:text="Ve a permisos de la aplicacion y permite las aplicaciones y permitir actividad en segundo plano( RIESGO DE MAL FUNCIONAMIENTO DE LA APP)"
+            android:text="Ve a permisos de la aplicacion y permite las notificaciones, también permitir actividad en segundo plano o no restinguir uso de la batería (RIESGO DE MAL FUNCIONAMIENTO DE LA APP)."
             android:textColor="@color/black" />
 
         <LinearLayout

@@ -1,5 +1,7 @@
 package es.resisg.prometeoapp3.modelo.conexionHTTP;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,12 +25,14 @@ public class peticiones {
     String url;
     String usuario;
     String contrasena;
+    Context context;
 
     //construtores
-    public peticiones(String url, String usuario, String contrasena) {
+    public peticiones(String url, String usuario, String contrasena,Context context) {
         this.url = url;
         this.usuario = usuario;
         this.contrasena = contrasena;
+        this.context= context;
     }
 
     //metodos
@@ -36,7 +40,7 @@ public class peticiones {
 
         ArrayList<ActuacionParticular> actuaciones= new ArrayList<>();
         try {
-            String respuesta = new conexionHTTP().execute(url, usuario, contrasena).get();//hacemos la conexion http y lo almacenamos en String respuesta
+            String respuesta = new conexionHTTP(context).execute(url, usuario, contrasena).get();//hacemos la conexion http y lo almacenamos en String respuesta
             JSONArray jsonArray = new JSONArray(respuesta);//lo convertimos a JSONArray
             for (int i = 0; i < jsonArray.length(); i++) {//Conseguimos cada elemento de jsonArray con JSONObject obtenemos cada atributo y rellenamos el ArrayList actuaciones
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -68,7 +72,7 @@ public class peticiones {
     public ArrayList<Evaluacion> conseguirEvaluaciones () {
         ArrayList<Evaluacion> evaluaciones= new ArrayList<>();// Se inicializa un ArrayList para almacenar las evaluaciones obtenidas
         try {
-            String respuesta = new conexionHTTP().execute(url, usuario, contrasena).get();//hacemos la conexion http y lo almacenamos en String respuesta
+            String respuesta = new conexionHTTP(context).execute(url, usuario, contrasena).get();//hacemos la conexion http y lo almacenamos en String respuesta
             JSONArray jsonArrayEvaluacines = new JSONArray(respuesta);// Se convierte la respuesta en un JSONArray
             for (int x = 0; x < jsonArrayEvaluacines.length(); x++) {// Iteramos sobre cada elemento del jsonArrayEvaluacines para obtener cada evaluación
 
@@ -121,7 +125,7 @@ public class peticiones {
     public String conseguirNombreUsuario(){
         String respuesta;
         try {
-            respuesta = new conexionHTTP().execute(url,usuario,contrasena).get().trim();
+            respuesta = new conexionHTTP(context).execute(url,usuario,contrasena).get().trim();
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
@@ -134,7 +138,7 @@ public class peticiones {
     public List<String> conseguirNotificaciones(){
         List<String> notificaciones = new ArrayList<>();
         try {
-            String respuesta = new conexionHTTP().execute(url,usuario,contrasena).get().trim();
+            String respuesta = new conexionHTTP(context).execute(url,usuario,contrasena).get().trim();
             JSONArray jsonArrayNotificaciones = new JSONArray(respuesta);
 
             for (int i=0;i<jsonArrayNotificaciones.length();i++){
@@ -158,7 +162,7 @@ public class peticiones {
 
         try {
             //hacemos la peticion al servidor y almacenamos la respuesta en una variable String
-            String respuesta = new conexionHTTP().execute(url,usuario,contrasena).get().trim();
+            String respuesta = new conexionHTTP(context).execute(url,usuario,contrasena).get().trim();
             JSONArray jsonArrayFaltas = new JSONArray(respuesta);
 
             for (int i=0;i<jsonArrayFaltas.length();i++){//Recorremos el JSONArray de faltas

@@ -46,7 +46,7 @@ public class FaltasFragment extends Fragment {
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirActuacionesParticulares pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        faltasArrayList = new peticiones("http://ieslassalinas.org/APP/appFaltas2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirFaltas();
+        faltasArrayList = new peticiones("http://ieslassalinas.org/APP/appFaltas2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena(),getContext()).conseguirFaltas();
 
         // Inicializar el RecyclerView y su Adapter
         rvFaltas = view.findViewById(R.id.recyclerViewFaltas);

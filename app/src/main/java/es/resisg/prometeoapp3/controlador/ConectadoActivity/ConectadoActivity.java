@@ -95,7 +95,7 @@ public class ConectadoActivity extends AppCompatActivity {
         List<String> notificacionesList = new ArrayList<>();
 
         //revisamos si disponemos de alguna notificacion
-        notificacionesList = new peticiones("http://192.168.1.141/WEB/APP/appNotificaciones.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirNotificaciones();
+        notificacionesList = new peticiones("http://ieslassalinas.org/APP/appRevisaDatos2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena(),ConectadoActivity.this).conseguirNotificaciones();
 
         if(notificacionesList.size()!=0){
             showDialog(notificacionesList);

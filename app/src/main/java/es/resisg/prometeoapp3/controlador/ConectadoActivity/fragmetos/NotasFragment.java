@@ -44,7 +44,7 @@ public class NotasFragment extends Fragment implements evaluacionesAdapter.Evalu
         gestionSesion = new GestionSesion(getContext());
 
         // llamamos a conexion.tareas.conseguirEvaluaciones pasando la URL,Usuario,Contraseña y conseguimos un ArrayList<actuacionParticular
-        evaluacionArrayList = new peticiones("http://ieslassalinas.org/APP/appNotas2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena()).conseguirEvaluaciones();
+        evaluacionArrayList = new peticiones("http://ieslassalinas.org/APP/appNotas2.php", String.valueOf(gestionSesion.getUsuario()), gestionSesion.getContrasena(),getContext()).conseguirEvaluaciones();
 
         //relacionamos el Recycler view con la parte gráfica de la aplicacion
         recyclerViewEvaluaciones = view.findViewById(R.id.recyclerViewEvaluaciones);
